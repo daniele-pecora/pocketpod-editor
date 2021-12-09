@@ -1,0 +1,63 @@
+.card-dim {
+    min-width: 300px;
+    min-height: 300px;
+    display: inline-block;
+}
+
+.card-dim-auto-width {
+    min-height: 300px;
+    display: inline-block;
+}
+
+.card-dim-auto-height {
+    min-width: 300px;
+    display: inline-block;
+}
+/*
+TODO Layout settings
+.card-dim-mobile-device {
+    --min-height:unset;
+}
+*/
+::ng-deep {
+    @media only screen and (max-width: 599px) {
+
+    }
+    
+    @media only screen and (min-width: 600px ) {
+
+    }
+    
+    @media only screen and (min-width: 980px ) {
+
+    }
+    
+    @media only screen and (min-width: 1260px ) {
+
+    }
+    @media only screen and (max-width: 599px) {
+        /** when small mobile device then make card full width */
+        app-control-card.card-dim-mobile-device {
+            .mat-card:not(.card-dim-auto-width):not(.card-dim-auto-height) {
+                width: calc(85vw);
+                min-width: calc(85vw);
+                max-width: calc(85vw);
+            }
+            .mat-card {
+                &.card-dim-auto-height {
+                    min-width: unset;
+                }
+            }
+        }
+    }
+}
+:host {
+    margin: 0.5em;
+    display: inline-block;
+}
+
+.drag_handle {
+    cursor: grab;
+}
+
+@import './card-theme'

@@ -1,0 +1,106 @@
+<ng-template #control_card_template>
+    <ng-container *ngIf="toggleOnly" [ngTemplateOutlet]="single_program_only"></ng-container>
+    <table *ngIf="!toggleOnly && bankselect_is_implemented"
+    class="program-control"
+    >
+        <!--// TODO not implemented yet-->
+        <tr *ngIf="Label">
+            <!-- show label only if the main title is set-->
+            <th colspan="3">Bank</th></tr>
+        <tr>
+            <td></td>
+            <td>
+                <button [disabled]="disabled" mat-icon-button aria-label="Bank up" (click)="onChangeBankUp($event)">
+                    <mat-icon>keyboard_arrow_up</mat-icon>
+                </button>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input 
+                matTooltip="Type to change value"
+                type="number" matInput size="3" maxlength="3" min="0" max="127" 
+                [(ngModel)]="midiBankNumber" (input)="onChangeBankInput($event)"
+                [disabled]="disabled"
+                >
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button [disabled]="disabled" mat-icon-button aria-label="Bank down" (click)="onChangeBankDown($event)">
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <table *ngIf="!toggleOnly"
+        class="program-control"
+    >
+        <tr *ngIf="Label">
+            <!-- show label only if the main title is set-->
+            <th colspan="3">Program</th></tr>
+        <tr>
+            <td></td>
+            <td>
+                <button [disabled]="disabled" mat-icon-button aria-label="Program up" (click)="onChangeProgramUp($event)"
+                    matTooltip="min. {{MIDIProgramsMin}}"
+                >
+                    <mat-icon>keyboard_arrow_up</mat-icon>
+                </button>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input 
+                matTooltip="Type to change value"
+                type="number" matInput size="3" maxlength="3" [min]="programsMin" [max]="programsMax" 
+                [(ngModel)]="midiProgramNumber" (input)="onChangeProgramInput($event)"
+                [disabled]="disabled"
+                >
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button [disabled]="disabled" mat-icon-button aria-label="Program down" (click)="onChangeProgramDown($event)"
+                    matTooltip="max. {{MIDIProgramsMax}}"
+                >
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <ng-content></ng-content>
+    <div *ngIf="MIDIChannelEdit"><input [disabled]="disabled" pInputText type="number" placeholder="Channel" min="1" max="16" [(ngModel)]="midiChannel" (ngModelChange)="onChangeMidiChannel($event)"></div>
+</ng-template>
+
+
+<app-control-card *ngIf="!inline;else no_control_card_template" [Title]="Label">
+    <ng-container [ngTemplateOutlet]="control_card_template"></ng-container>
+</app-control-card>
+
+<ng-template #no_control_card_template>
+    <ng-container *ngIf="!toggleOnly;else single_program_only" [ngTemplateOutlet]="control_card_template"></ng-container>
+</ng-template>
+
+<ng-template #single_program_only>
+    <button *ngIf="!iconOnly" [disabled]="disabled" mat-raised-button color="accent" (click)="onChangeProgramFromToggle()"
+        matTooltip="{{Label}}"
+    >{{Label}}</button>
+    <button *ngIf="iconOnly" [disabled]="disabled" mat-icon-button color="accent" (click)="onChangeProgramFromToggle()"
+        matTooltip="{{Label}}"
+    ><mat-icon *ngIf="iconOnly">{{iconOnly}}</mat-icon></button>   
+</ng-template>

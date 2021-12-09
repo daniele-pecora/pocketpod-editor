@@ -1,0 +1,32 @@
+table td {
+    text-align: center;
+}
+
+input[type=number] {
+    text-align: center;
+}
+
+
+.program-control{
+    input, input:focus {
+        border:none;
+        outline: none;
+        text-align: center;
+    }
+    input:focus {
+        text-decoration: underline;
+    }
+    input {
+        opacity: 0.6;
+    }
+    /** START: hide spinner and arrows */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {//Chrome, Safari, Edge, Opera
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type=number] {//Firefox
+        -moz-appearance:textfield;
+    }
+    /** END: hide spinner and arrows */
+}

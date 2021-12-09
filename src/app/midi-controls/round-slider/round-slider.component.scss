@@ -1,0 +1,68 @@
+
+::ng-deep{
+    .slider_style4 {
+        /** don't overlap eachother */
+        margin:0.3em;
+        /** don't overlap label */
+        overflow: hidden;
+        /** don't cut of the handle */
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        padding-top: 0.5em;
+
+        .rs-control .rs-range-color {
+            background-color: #45e646;
+            background-color: #e2e2e3;
+            background-color: #ffe13e;
+        }
+        .rs-control .rs-path-color {
+            background-color: #ffe13e;
+            background-color: rgba(255, 255, 255, 0.5);
+            background-color: #d59495;
+        }
+        .rs-control .rs-handle {
+            background-color: #090909;
+            background-color: #45E646;
+            background-color: #424242;
+            box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+        }
+        .rs-control .rs-bg-color {
+            background-color: #ab2927;
+        }
+
+
+        .rs-control .rs-border{
+            border: none;
+            _box-shadow: inset 0px 2px 1px -1px rgba(0, 0, 0, 0.62);
+        }
+        .rs-tooltip {
+            font-family: '01 Digit';
+            letter-spacing: 0.2em;
+            border: none !important;
+            top: 50%;
+            left: 50%;
+            /** don't make the tooltip text move when changing to edit mode */
+            margin-top: -12.5px !important;
+            margin-left: -14.5px !important;
+            input {
+                font-family: '01 Digit';
+                letter-spacing: 0.2em;
+                color:inherit;
+            }
+        }
+    }
+}
+/*
+
+.rs-path-color : This class applies the background color for the slider path.
+.rs-range-color : This class applies the background color for the slider range.
+.rs-bg-color : This class applies the background color for the slider control.
+.rs-border : This class applies the border color for the slider control.
+.rs-border.rs-inner : This class applies the styles for inner border alone.
+.rs-border.rs-outer : This class applies the styles for outer border alone.
+.rs-handle : This class added for the slider handles. We can set the handle styles here.
+.rs-first .rs-handle : Mentions the first handle of the slider.
+.rs-second .rs-handle : Mentions the second handle of the slider. This is available at the range slider only.
+.rs-handle.rs-focus : When the slider handle was focused, at that time the focus class added for the corresponding handle.
+.rs-animation .rs-transition
+*/

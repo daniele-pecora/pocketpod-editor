@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr" vocab="http://schema.org/">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8" />
+  <!-- <base href="https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2" /> -->
+
+  <title>Control Change Messages (Data Bytes)</title>
+
+</head>
+
+<body class="">
+
+
+
+  <div class="tm-page">
+
+    <div id="tm-main" class="tm-main uk-section uk-section-default" uk-height-viewport="expand: true">
+      <div class="uk-container">
+
+
+        <div class="uk-grid" uk-grid>
+          <div class="uk-width-expand@m">
+
+
+
+
+            <div id="system-message-container" data-messages="[]">
+            </div>
+
+
+            <div class="yoo-zoo product-uikit product-uikit-table-3-control-change-messages-data-bytes-2">
+
+
+
+              <h1> Control Change Messages (Data Bytes) </h1>
+
+
+              <div class="uk-margin">
+                <p style="text-align: center;"><span class="biggerbolder"><strong>Table 3 - Control Change Messages and
+                      RPNs</strong></span></p>
+                <p>The following table lists all currently defined Control Change messages and Channel Mode messages, in
+                  control number order&nbsp;(adapted from "MIDI by the Numbers" by D. Valenti-Electronic Musician 2/88,
+                  and updated by the MIDI Manufacturers Association.) This table is intended as an overview of MIDI, and
+                  is by no means complete.</p>
+                <p><strong>WARNING! Details about implementing these messages can dramatically impact compatibility with
+                    other products. We strongly recommend consulting the official MMA Detailed MIDI Specification for
+                    additional information.</strong></p>
+                <p>Registered Parameter Numbers (RPNs) are an extension to the Control Change message for setting
+                  additional parameters. Appended at the bottom is a table of all currently defined
+                  RPNs.<br /><br />WARNING! Details about implementing these messages can dramatically impact
+                  compatibility with other products. We strongly recommend consulting the official MMA Detailed MIDI
+                  Specification for additional information.
+                  <!-- Table 3 -->
+                </p>
+                <table border="1" class="maintext" style="width: 740px;" cellspacing="0" cellpadding="5" align="center">
+                  <tbody>
+                    <tr>
+                      <td colspan="6" style="width: 733px;" align="center"><span
+                          style="font-size: 10pt;"><strong><br />Table 3: Control Changes and Mode Changes<br />
+                          </strong> (Status Bytes 176-191)</span></td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" style="width: 173px;" align="center"><strong>Control Number </strong><br /> (2nd
+                        Byte Value)</td>
+                      <td rowspan="2" style="width: 347px;" align="center"><strong>Control Function </strong></td>
+                      <td colspan="2" style="width: 189px;" align="center"><strong>3rd Byte Value </strong></td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;" align="center"><strong>Decimal </strong></td>
+                      <td style="width: 72px;" align="center"><strong>Binary </strong></td>
+                      <td style="width: 25px;" align="center"><strong>Hex </strong></td>
+                      <td style="width: 144px;" align="center"><strong>Value</strong></td>
+                      <td style="width: 33px;" align="center"><strong>Used As </strong></td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">0</td>
+                      <td style="width: 72px;">00000000</td>
+                      <td style="width: 25px;">00</td>
+                      <td style="width: 347px;" align="left">Bank Select</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">1</td>
+                      <td style="width: 72px;">00000001</td>
+                      <td style="width: 25px;">01</td>
+                      <td style="width: 347px;" align="left">Modulation Wheel or Lever</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">2</td>
+                      <td style="width: 72px;">00000010</td>
+                      <td style="width: 25px;">02</td>
+                      <td style="width: 347px;" align="left">Breath Controller</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">3</td>
+                      <td style="width: 72px;">00000011</td>
+                      <td style="width: 25px;">03</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">4</td>
+                      <td style="width: 72px;">00000100</td>
+                      <td style="width: 25px;">04</td>
+                      <td style="width: 347px;" align="left">Foot Controller</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">5</td>
+                      <td style="width: 72px;">00000101</td>
+                      <td style="width: 25px;">05</td>
+                      <td style="width: 347px;" align="left">Portamento Time</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">6</td>
+                      <td style="width: 72px;">00000110</td>
+                      <td style="width: 25px;">06</td>
+                      <td style="width: 347px;" align="left">Data Entry MSB</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">7</td>
+                      <td style="width: 72px;">00000111</td>
+                      <td style="width: 25px;">07</td>
+                      <td style="width: 347px;" align="left">Channel Volume (formerly Main Volume)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">8</td>
+                      <td style="width: 72px;">00001000</td>
+                      <td style="width: 25px;">08</td>
+                      <td style="width: 347px;" align="left">Balance</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">9</td>
+                      <td style="width: 72px;">00001001</td>
+                      <td style="width: 25px;">09</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">10</td>
+                      <td style="width: 72px;">00001010</td>
+                      <td style="width: 25px;">0A</td>
+                      <td style="width: 347px;" align="left">Pan</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">11</td>
+                      <td style="width: 72px;">00001011</td>
+                      <td style="width: 25px;">0B</td>
+                      <td style="width: 347px;" align="left">Expression Controller</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">12</td>
+                      <td style="width: 72px;">00001100</td>
+                      <td style="width: 25px;">0C</td>
+                      <td style="width: 347px;" align="left">Effect Control 1</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">13</td>
+                      <td style="width: 72px;">00001101</td>
+                      <td style="width: 25px;">0D</td>
+                      <td style="width: 347px;" align="left">Effect Control 2</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">14</td>
+                      <td style="width: 72px;">00001110</td>
+                      <td style="width: 25px;">0E</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">15</td>
+                      <td style="width: 72px;">00001111</td>
+                      <td style="width: 25px;">0F</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">16</td>
+                      <td style="width: 72px;">00010000</td>
+                      <td style="width: 25px;">10</td>
+                      <td style="width: 347px;" align="left">General Purpose Controller 1</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">17</td>
+                      <td style="width: 72px;">00010001</td>
+                      <td style="width: 25px;">11</td>
+                      <td style="width: 347px;" align="left">General Purpose Controller 2</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">18</td>
+                      <td style="width: 72px;">00010010</td>
+                      <td style="width: 25px;">12</td>
+                      <td style="width: 347px;" align="left">General Purpose Controller 3</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">19</td>
+                      <td style="width: 72px;">00010011</td>
+                      <td style="width: 25px;">13</td>
+                      <td style="width: 347px;" align="left">General Purpose Controller 4</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">20</td>
+                      <td style="width: 72px;">00010100</td>
+                      <td style="width: 25px;">14</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">21</td>
+                      <td style="width: 72px;">00010101</td>
+                      <td style="width: 25px;">15</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">22</td>
+                      <td style="width: 72px;">00010110</td>
+                      <td style="width: 25px;">16</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">23</td>
+                      <td style="width: 72px;">00010111</td>
+                      <td style="width: 25px;">17</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">24</td>
+                      <td style="width: 72px;">00011000</td>
+                      <td style="width: 25px;">18</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">25</td>
+                      <td style="width: 72px;">00011001</td>
+                      <td style="width: 25px;">19</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">26</td>
+                      <td style="width: 72px;">00011010</td>
+                      <td style="width: 25px;">1A</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">27</td>
+                      <td style="width: 72px;">00011011</td>
+                      <td style="width: 25px;">1B</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">28</td>
+                      <td style="width: 72px;">00011100</td>
+                      <td style="width: 25px;">1C</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">29</td>
+                      <td style="width: 72px;">00011101</td>
+                      <td style="width: 25px;">1D</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">30</td>
+                      <td style="width: 72px;">00011110</td>
+                      <td style="width: 25px;">1E</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">31</td>
+                      <td style="width: 72px;">00011111</td>
+                      <td style="width: 25px;">1F</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">32</td>
+                      <td style="width: 72px;">00100000</td>
+                      <td style="width: 25px;">20</td>
+                      <td style="width: 347px;" align="left">LSB for Control 0 (Bank Select)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">33</td>
+                      <td style="width: 72px;">00100001</td>
+                      <td style="width: 25px;">21</td>
+                      <td style="width: 347px;" align="left">LSB for Control 1 (Modulation Wheel or Lever)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">34</td>
+                      <td style="width: 72px;">00100010</td>
+                      <td style="width: 25px;">22</td>
+                      <td style="width: 347px;" align="left">LSB for Control 2 (Breath Controller)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">35</td>
+                      <td style="width: 72px;">00100011</td>
+                      <td style="width: 25px;">23</td>
+                      <td style="width: 347px;" align="left">LSB for Control 3 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">36</td>
+                      <td style="width: 72px;">00100100</td>
+                      <td style="width: 25px;">24</td>
+                      <td style="width: 347px;" align="left">LSB for Control 4 (Foot Controller)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">37</td>
+                      <td style="width: 72px;">00100101</td>
+                      <td style="width: 25px;">25</td>
+                      <td style="width: 347px;" align="left">LSB for Control 5 (Portamento Time)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">38</td>
+                      <td style="width: 72px;">00100110</td>
+                      <td style="width: 25px;">26</td>
+                      <td style="width: 347px;" align="left">LSB for Control 6 (Data Entry)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">39</td>
+                      <td style="width: 72px;">00100111</td>
+                      <td style="width: 25px;">27</td>
+                      <td style="width: 347px;" align="left">LSB for Control 7 (Channel Volume, formerly Main Volume)
+                      </td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">40</td>
+                      <td style="width: 72px;">00101000</td>
+                      <td style="width: 25px;">28</td>
+                      <td style="width: 347px;" align="left">LSB for Control 8 (Balance)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">41</td>
+                      <td style="width: 72px;">00101001</td>
+                      <td style="width: 25px;">29</td>
+                      <td style="width: 347px;" align="left">LSB for Control 9 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">42</td>
+                      <td style="width: 72px;">00101010</td>
+                      <td style="width: 25px;">2A</td>
+                      <td style="width: 347px;" align="left">LSB for Control 10 (Pan)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">43</td>
+                      <td style="width: 72px;">00101011</td>
+                      <td style="width: 25px;">2B</td>
+                      <td style="width: 347px;" align="left">LSB for Control 11 (Expression Controller)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">44</td>
+                      <td style="width: 72px;">00101100</td>
+                      <td style="width: 25px;">2C</td>
+                      <td style="width: 347px;" align="left">LSB for Control 12 (Effect control 1)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">45</td>
+                      <td style="width: 72px;">00101101</td>
+                      <td style="width: 25px;">2D</td>
+                      <td style="width: 347px;" align="left">LSB for Control 13 (Effect control 2)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">46</td>
+                      <td style="width: 72px;">00101110</td>
+                      <td style="width: 25px;">2E</td>
+                      <td style="width: 347px;" align="left">LSB for Control 14 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">47</td>
+                      <td style="width: 72px;">00101111</td>
+                      <td style="width: 25px;">2F</td>
+                      <td style="width: 347px;" align="left">LSB for Control 15 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">48</td>
+                      <td style="width: 72px;">00110000</td>
+                      <td style="width: 25px;">30</td>
+                      <td style="width: 347px;" align="left">LSB for Control 16 (General Purpose Controller 1)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">49</td>
+                      <td style="width: 72px;">00110001</td>
+                      <td style="width: 25px;">31</td>
+                      <td style="width: 347px;" align="left">LSB for Control 17 (General Purpose Controller 2)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">50</td>
+                      <td style="width: 72px;">00110010</td>
+                      <td style="width: 25px;">32</td>
+                      <td style="width: 347px;" align="left">LSB for Control 18 (General Purpose Controller 3)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">51</td>
+                      <td style="width: 72px;">00110011</td>
+                      <td style="width: 25px;">33</td>
+                      <td style="width: 347px;" align="left">LSB for Control 19 (General Purpose Controller 4)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">52</td>
+                      <td style="width: 72px;">00110100</td>
+                      <td style="width: 25px;">34</td>
+                      <td style="width: 347px;" align="left">LSB for Control 20 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">53</td>
+                      <td style="width: 72px;">00110101</td>
+                      <td style="width: 25px;">35</td>
+                      <td style="width: 347px;" align="left">LSB for Control 21 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">54</td>
+                      <td style="width: 72px;">00110110</td>
+                      <td style="width: 25px;">36</td>
+                      <td style="width: 347px;" align="left">LSB for Control 22 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">55</td>
+                      <td style="width: 72px;">00110111</td>
+                      <td style="width: 25px;">37</td>
+                      <td style="width: 347px;" align="left">LSB for Control 23 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">56</td>
+                      <td style="width: 72px;">00111000</td>
+                      <td style="width: 25px;">38</td>
+                      <td style="width: 347px;" align="left">LSB for Control 24 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">57</td>
+                      <td style="width: 72px;">00111001</td>
+                      <td style="width: 25px;">39</td>
+                      <td style="width: 347px;" align="left">LSB for Control 25 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">58</td>
+                      <td style="width: 72px;">00111010</td>
+                      <td style="width: 25px;">3A</td>
+                      <td style="width: 347px;" align="left">LSB for Control 26 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">59</td>
+                      <td style="width: 72px;">00111011</td>
+                      <td style="width: 25px;">3B</td>
+                      <td style="width: 347px;" align="left">LSB for Control 27 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">60</td>
+                      <td style="width: 72px;">00111100</td>
+                      <td style="width: 25px;">3C</td>
+                      <td style="width: 347px;" align="left">LSB for Control 28 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">61</td>
+                      <td style="width: 72px;">00111101</td>
+                      <td style="width: 25px;">3D</td>
+                      <td style="width: 347px;" align="left">LSB for Control 29 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">62</td>
+                      <td style="width: 72px;">00111110</td>
+                      <td style="width: 25px;">3E</td>
+                      <td style="width: 347px;" align="left">LSB for Control 30 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">63</td>
+                      <td style="width: 72px;">00111111</td>
+                      <td style="width: 25px;">3F</td>
+                      <td style="width: 347px;" align="left">LSB for Control 31 (Undefined)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">64</td>
+                      <td style="width: 72px;">01000000</td>
+                      <td style="width: 25px;">40</td>
+                      <td style="width: 347px;" align="left">Damper Pedal on/off (Sustain)</td>
+                      <td style="width: 144px;">≤63 off, ≥64 on</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">65</td>
+                      <td style="width: 72px;">01000001</td>
+                      <td style="width: 25px;">41</td>
+                      <td style="width: 347px;" align="left">Portamento On/Off</td>
+                      <td style="width: 144px;">≤63 off, ≥64 on</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">66</td>
+                      <td style="width: 72px;">01000010</td>
+                      <td style="width: 25px;">42</td>
+                      <td style="width: 347px;" align="left">Sostenuto On/Off</td>
+                      <td style="width: 144px;">≤63 off, ≥64 on</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">67</td>
+                      <td style="width: 72px;">01000011</td>
+                      <td style="width: 25px;">43</td>
+                      <td style="width: 347px;" align="left">Soft Pedal On/Off</td>
+                      <td style="width: 144px;">≤63 off, ≥64 on</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">68</td>
+                      <td style="width: 72px;">01000100</td>
+                      <td style="width: 25px;">44</td>
+                      <td style="width: 347px;" align="left">Legato Footswitch</td>
+                      <td style="width: 144px;">≤63 Normal, ≥64 Legato</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">69</td>
+                      <td style="width: 72px;">01000101</td>
+                      <td style="width: 25px;">45</td>
+                      <td style="width: 347px;" align="left">Hold 2</td>
+                      <td style="width: 144px;">≤63 off, ≥64 on</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">70</td>
+                      <td style="width: 72px;">01000110</td>
+                      <td style="width: 25px;">46</td>
+                      <td style="width: 347px;" align="left">Sound Controller 1 (default: Sound Variation)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">71</td>
+                      <td style="width: 72px;">01000111</td>
+                      <td style="width: 25px;">47</td>
+                      <td style="width: 347px;" align="left">Sound Controller 2 (default: Timbre/Harmonic Intens.)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">72</td>
+                      <td style="width: 72px;">01001000</td>
+                      <td style="width: 25px;">48</td>
+                      <td style="width: 347px;" align="left">Sound Controller 3 (default: Release Time)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">73</td>
+                      <td style="width: 72px;">01001001</td>
+                      <td style="width: 25px;">49</td>
+                      <td style="width: 347px;" align="left">Sound Controller 4 (default: Attack Time)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">74</td>
+                      <td style="width: 72px;">01001010</td>
+                      <td style="width: 25px;">4A</td>
+                      <td style="width: 347px;" align="left">Sound Controller 5 (default: Brightness)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">75</td>
+                      <td style="width: 72px;">01001011</td>
+                      <td style="width: 25px;">4B</td>
+                      <td style="width: 347px;" align="left">Sound Controller 6 (default: Decay Time - see MMA RP-021)
+                      </td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">76</td>
+                      <td style="width: 72px;">01001100</td>
+                      <td style="width: 25px;">4C</td>
+                      <td style="width: 347px;" align="left">Sound Controller 7 (default: Vibrato Rate - see MMA RP-021)
+                      </td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">77</td>
+                      <td style="width: 72px;">01001101</td>
+                      <td style="width: 25px;">4D</td>
+                      <td style="width: 347px;" align="left">Sound Controller 8 (default: Vibrato Depth - see MMA
+                        RP-021)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">78</td>
+                      <td style="width: 72px;">01001110</td>
+                      <td style="width: 25px;">4E</td>
+                      <td style="width: 347px;" align="left">Sound Controller 9 (default: Vibrato Delay - see MMA
+                        RP-021)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">79</td>
+                      <td style="width: 72px;">01001111</td>
+                      <td style="width: 25px;">4F</td>
+                      <td style="width: 347px;" align="left">Sound Controller 10 (default undefined - see MMA RP-021)
+                      </td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">80</td>
+                      <td style="width: 72px;">01010000</td>
+                      <td style="width: 25px;">50</td>
+                      <td style="width: 347px;" align="left">General Purpose Controller 5</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">81</td>
+                      <td style="width: 72px;">01010001</td>
+                      <td style="width: 25px;">51</td>
+                      <td style="width: 347px;" align="left">General Purpose Controller 6</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">82</td>
+                      <td style="width: 72px;">01010010</td>
+                      <td style="width: 25px;">52</td>
+                      <td style="width: 347px;" align="left">General Purpose Controller 7</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">83</td>
+                      <td style="width: 72px;">01010011</td>
+                      <td style="width: 25px;">53</td>
+                      <td style="width: 347px;" align="left">General Purpose Controller 8</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">84</td>
+                      <td style="width: 72px;">01010100</td>
+                      <td style="width: 25px;">54</td>
+                      <td style="width: 347px;" align="left">Portamento Control</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">85</td>
+                      <td style="width: 72px;">01010101</td>
+                      <td style="width: 25px;">55</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">86</td>
+                      <td style="width: 72px;">01010110</td>
+                      <td style="width: 25px;">56</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">87</td>
+                      <td style="width: 72px;">01010111</td>
+                      <td style="width: 25px;">57</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">88</td>
+                      <td style="width: 72px;">01011000</td>
+                      <td style="width: 25px;">58</td>
+                      <td style="width: 347px;" align="left">High Resolution Velocity Prefix</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">89</td>
+                      <td style="width: 72px;">01011001</td>
+                      <td style="width: 25px;">59</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">90</td>
+                      <td style="width: 72px;">01011010</td>
+                      <td style="width: 25px;">5A</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">91</td>
+                      <td style="width: 72px;">01011011</td>
+                      <td style="width: 25px;">5B</td>
+                      <td style="width: 347px;" align="left">Effects 1 Depth <br /> (default: Reverb Send Level - see
+                        MMA RP-023) <br /> (formerly External Effects Depth)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">92</td>
+                      <td style="width: 72px;">01011100</td>
+                      <td style="width: 25px;">5C</td>
+                      <td style="width: 347px;" align="left">Effects 2 Depth (formerly Tremolo Depth)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">93</td>
+                      <td style="width: 72px;">01011101</td>
+                      <td style="width: 25px;">5D</td>
+                      <td style="width: 347px;" align="left">Effects 3 Depth <br /> (default: Chorus Send Level - see
+                        MMA RP-023) <br /> (formerly Chorus Depth)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">94</td>
+                      <td style="width: 72px;">01011110</td>
+                      <td style="width: 25px;">5E</td>
+                      <td style="width: 347px;" align="left">Effects 4 Depth (formerly Celeste [Detune] Depth)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">95</td>
+                      <td style="width: 72px;">01011111</td>
+                      <td style="width: 25px;">5F</td>
+                      <td style="width: 347px;" align="left">Effects 5 Depth (formerly Phaser Depth)</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">96</td>
+                      <td style="width: 72px;">01100000</td>
+                      <td style="width: 25px;">60</td>
+                      <td style="width: 347px;" align="left">Data Increment (Data Entry +1) (see MMA RP-018)</td>
+                      <td style="width: 144px;">N/A</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">97</td>
+                      <td style="width: 72px;">01100001</td>
+                      <td style="width: 25px;">61</td>
+                      <td style="width: 347px;" align="left">Data Decrement (Data Entry -1) (see MMA RP-018)</td>
+                      <td style="width: 144px;">N/A</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">98</td>
+                      <td style="width: 72px;">01100010</td>
+                      <td style="width: 25px;">62</td>
+                      <td style="width: 347px;" align="left">Non-Registered Parameter Number (NRPN) - LSB</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">99</td>
+                      <td style="width: 72px;">01100011</td>
+                      <td style="width: 25px;">63</td>
+                      <td style="width: 347px;" align="left">Non-Registered Parameter Number (NRPN) - MSB</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">100</td>
+                      <td style="width: 72px;">01100100</td>
+                      <td style="width: 25px;">64</td>
+                      <td style="width: 347px;" align="left">Registered Parameter Number (RPN) - LSB*</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">LSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">101</td>
+                      <td style="width: 72px;">01100101</td>
+                      <td style="width: 25px;">65</td>
+                      <td style="width: 347px;" align="left">Registered Parameter Number (RPN) - MSB*</td>
+                      <td style="width: 144px;">0-127</td>
+                      <td style="width: 33px;">MSB</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">102</td>
+                      <td style="width: 72px;">01100110</td>
+                      <td style="width: 25px;">66</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">103</td>
+                      <td style="width: 72px;">01100111</td>
+                      <td style="width: 25px;">67</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">104</td>
+                      <td style="width: 72px;">01101000</td>
+                      <td style="width: 25px;">68</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">105</td>
+                      <td style="width: 72px;">01101001</td>
+                      <td style="width: 25px;">69</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">106</td>
+                      <td style="width: 72px;">01101010</td>
+                      <td style="width: 25px;">6A</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">107</td>
+                      <td style="width: 72px;">01101011</td>
+                      <td style="width: 25px;">6B</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">108</td>
+                      <td style="width: 72px;">01101100</td>
+                      <td style="width: 25px;">6C</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">109</td>
+                      <td style="width: 72px;">01101101</td>
+                      <td style="width: 25px;">6D</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">110</td>
+                      <td style="width: 72px;">01101110</td>
+                      <td style="width: 25px;">6E</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">111</td>
+                      <td style="width: 72px;">01101111</td>
+                      <td style="width: 25px;">6F</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">112</td>
+                      <td style="width: 72px;">01110000</td>
+                      <td style="width: 25px;">70</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">113</td>
+                      <td style="width: 72px;">01110001</td>
+                      <td style="width: 25px;">71</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">114</td>
+                      <td style="width: 72px;">01110010</td>
+                      <td style="width: 25px;">72</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">115</td>
+                      <td style="width: 72px;">01110011</td>
+                      <td style="width: 25px;">73</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">116</td>
+                      <td style="width: 72px;">01110100</td>
+                      <td style="width: 25px;">74</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">117</td>
+                      <td style="width: 72px;">01110101</td>
+                      <td style="width: 25px;">75</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">118</td>
+                      <td style="width: 72px;">01110110</td>
+                      <td style="width: 25px;">76</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">119</td>
+                      <td style="width: 72px;">01110111</td>
+                      <td style="width: 25px;">77</td>
+                      <td style="width: 347px;" align="left">Undefined</td>
+                      <td style="width: 144px;">---</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;"><strong><a name="ModeChanges"></a>Note: </strong></td>
+                      <td colspan="5" style="width: 669px;" align="left">Controller numbers 120-127 are reserved for
+                        Channel Mode Messages, which rather than controlling sound parameters, affect the channel's
+                        operating mode. (See also Table 1.)</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">120</td>
+                      <td style="width: 72px;">01111000</td>
+                      <td style="width: 25px;">78</td>
+                      <td style="width: 347px;" align="left">[Channel Mode Message] All Sound Off</td>
+                      <td style="width: 144px;">0</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">121</td>
+                      <td style="width: 72px;">01111001</td>
+                      <td style="width: 25px;">79</td>
+                      <td style="width: 347px;" align="left">[Channel Mode Message] Reset All Controllers <br /> (See
+                        MMA RP-015)</td>
+                      <td style="width: 144px;">0</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">122</td>
+                      <td style="width: 72px;">01111010</td>
+                      <td style="width: 25px;">7A</td>
+                      <td style="width: 347px;" align="left">[Channel Mode Message] Local Control On/Off</td>
+                      <td style="width: 144px;">0 off, 127 on</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">123</td>
+                      <td style="width: 72px;">01111011</td>
+                      <td style="width: 25px;">7B</td>
+                      <td style="width: 347px;" align="left">[Channel Mode Message] All Notes Off</td>
+                      <td style="width: 144px;">0</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">124</td>
+                      <td style="width: 72px;">01111100</td>
+                      <td style="width: 25px;">7C</td>
+                      <td style="width: 347px;" align="left">[Channel Mode Message] Omni Mode Off (+ all notes off)</td>
+                      <td style="width: 144px;">0</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">125</td>
+                      <td style="width: 72px;">01111101</td>
+                      <td style="width: 25px;">7D</td>
+                      <td style="width: 347px;" align="left">[Channel Mode Message] Omni Mode On (+ all notes off)</td>
+                      <td style="width: 144px;">0</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">126</td>
+                      <td style="width: 72px;">01111110</td>
+                      <td style="width: 25px;">7E</td>
+                      <td style="width: 347px;" align="left">[Channel Mode Message] Mono Mode On (+ poly off, + all
+                        notes off)</td>
+                      <td style="width: 144px;">
+                        <p>Note: This equals the number of channels, or zero if the number of channels equals the number
+                          of voices in the receiver.</p>
+                      </td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                    <tr>
+                      <td style="width: 52px;">127</td>
+                      <td style="width: 72px;">01111111</td>
+                      <td style="width: 25px;">7F</td>
+                      <td style="width: 347px;" align="left">[Channel Mode Message] Poly Mode On (+ mono off, +all notes
+                        off)</td>
+                      <td style="width: 144px;">0</td>
+                      <td style="width: 33px;">---</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+
+                
+                <table border="1" class="maintext" style="width: 740px;" cellspacing="0" cellpadding="5" align="center">
+                  <tbody>
+                    <tr>
+                      <td colspan="6" style="width: 733px;">
+                        <p align="center"><span class="mainbold"><br /> <a name="3a"></a>Table 3a: Registered Parameter
+                            Numbers<br /></span></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="6" style="width: 733px;">
+                        <p>To set or change the value of a Registered Parameter:</p>
+                        <p>1. Send two Control Change messages using Control Numbers 101 (65H) and 100 (64H) to select
+                          the desired Registered Parameter Number, as per the following table.</p>
+                        <p>2. To set the selected Registered Parameter to a specific value, send a Control Change
+                          messages to the Data Entry MSB controller (Control Number 6). If the selected Registered
+                          Parameter requires the LSB to be set, send another Control Change message to the Data Entry
+                          LSB controller (Control Number 38).</p>
+                        <p>3. To make a relative adjustment to the selected Registered Parameter's current value, use
+                          the Data Increment or Data Decrement controllers (Control Numbers 96 and 97).</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="6" style="width: 733px;">
+                        <!-- Table 3a -->
+                        <table border="1" class="maintext" align="center">
+                          <tbody>
+                            <tr>
+                              <td colspan="2" style="height: 13px;" align="center"><strong>Parameter Number </strong>
+                              </td>
+                              <td style="height: 13px;" align="center"><strong>Parameter Function </strong></td>
+                              <td style="height: 13px;" align="center"><strong>Data Entry Value </strong></td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 39px;"><strong>MSB: Control 101 (65H) Value</strong></td>
+                              <td style="width: 90px; height: 39px;"><strong>LSB: Control 100 (64H) Value</strong></td>
+                            </tr>
+                            <tr>
+                              <td rowspan="7" style="width: 90px; height: 251px;">00H</td>
+                              <td style="width: 90px; height: 26px;">00H</td>
+                              <td style="height: 26px;">Pitch Bend Sensitivity</td>
+                              <td style="width: 160px; height: 26px;">MSB = +/- semitones <br /> LSB =+/--cents</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 52px;">01H</td>
+                              <td style="height: 52px;">Channel Fine Tuning <br /> (formerly Fine Tuning - see MMA
+                                RP-022)</td>
+                              <td style="width: 160px; height: 52px;">Resolution 100/8192 cents <br /> 00H 00H = -100
+                                cents <br /> 40H 00H = A440 <br /> 7FH 7FH = +100 cents</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 65px;">02H</td>
+                              <td style="height: 65px;">Channel Coarse Tuning <br /> (formerly Coarse Tuning - see MMA
+                                RP-022)</td>
+                              <td style="width: 160px; height: 65px;">Only MSB used <br /> Resolution 100 cents <br />
+                                00H = -6400 cents <br /> 40H = A440 <br /> 7FH = +6300 cents</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">03H</td>
+                              <td style="height: 13px;">Tuning Program Change</td>
+                              <td style="width: 160px; height: 13px;">Tuning Program Number</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">04H</td>
+                              <td style="height: 13px;">Tuning Bank Select</td>
+                              <td style="width: 160px; height: 13px;">Tuning Bank Number</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 52px;">05H&nbsp;</td>
+                              <td style="height: 52px;">Modulation Depth Range <br /> (see MMA General MIDI Level 2
+                                Specification)</td>
+                              <td style="width: 160px; height: 52px;">For GM2, defined in GM2 Specification. <br /> For
+                                other systems, defined by manufacturer</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 52px;">06H&nbsp;</td>
+                              <td style="height: 52px;">
+                                <p>MPE Configurarion Message (see MPE Specification)</p>
+                              </td>
+                              <td style="width: 160px; height: 52px;">See MPE Specification</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">&nbsp;...</td>
+                              <td style="width: 90px; height: 13px;">&nbsp;...</td>
+                              <td style="height: 13px;">&nbsp;All RESERVED for future MMA Definition</td>
+                              <td style="width: 160px; height: 13px;">&nbsp;...</td>
+                            </tr>
+                            <tr>
+                              <td rowspan="10" style="width: 90px; height: 184px;">3DH (61)</td>
+                              <td colspan="3" style="height: 13px;" align="center">Three Dimensional Sound Controllers
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">00H</td>
+                              <td style="height: 13px;">AZIMUTH ANGLE&nbsp;</td>
+                              <td style="width: 160px; height: 13px;">See RP-049</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">01H</td>
+                              <td style="height: 13px;">ELEVATION ANGLE&nbsp;</td>
+                              <td style="width: 160px; height: 13px;">See RP-049</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">02H</td>
+                              <td style="height: 13px;">GAIN&nbsp;</td>
+                              <td style="width: 160px; height: 13px;">See RP-049</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">03H</td>
+                              <td style="height: 13px;">DISTANCE RATIO&nbsp;</td>
+                              <td style="width: 160px; height: 13px;">See RP-049</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">04H</td>
+                              <td style="height: 13px;">MAXIMUM DISTANCE&nbsp;</td>
+                              <td style="width: 160px; height: 13px;">See RP-049</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">05H</td>
+                              <td style="height: 13px;">GAIN AT MAXIMUM DISTANCE&nbsp;</td>
+                              <td style="width: 160px; height: 13px;">See RP-049</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">06H</td>
+                              <td style="height: 13px;">REFERENCE DISTANCE RATIO&nbsp;</td>
+                              <td style="width: 160px; height: 13px;">See RP-049</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">07H</td>
+                              <td style="height: 13px;">PAN SPREAD ANGLE&nbsp;</td>
+                              <td style="width: 160px; height: 13px;">See RP-049</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">08H</td>
+                              <td style="height: 13px;">ROLL ANGLE&nbsp;</td>
+                              <td style="width: 160px; height: 13px;">See RP-049</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">&nbsp;...</td>
+                              <td style="width: 90px; height: 13px;">&nbsp;...</td>
+                              <td style="height: 13px;">&nbsp;All RESERVED for future MMA Definition</td>
+                              <td style="width: 160px; height: 13px;">&nbsp;...</td>
+                            </tr>
+                            <tr>
+                              <td style="width: 90px; height: 13px;">7FH</td>
+                              <td style="width: 90px; height: 13px;">7FH</td>
+                              <td style="height: 13px;">Null Function Number for RPN/NRPN</td>
+                              <td style="width: 160px; height: 13px;">Setting RPN to 7FH,7FH will disable the data
+                                entry, data increment, and data decrement controllers until a new RPN or NRPN is
+                                selected.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!-- end Table 3a -->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>
+                  <!-- end Table 3 -->
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./Control-Change-Messages-(Data-Bytes).js"></script>
+
+</body>
+
+</html>

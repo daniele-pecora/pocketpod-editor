@@ -1,0 +1,110 @@
+table {
+    border-collapse:collapse;
+}
+table td {
+    border:solid 1px;
+}
+
+
+/** --------- */
+/** table all */
+/** --------- */
+
+table tr:not(:nth-of-type(3)) td:nth-of-type(18),
+table tr:not(:nth-of-type(3)) td:nth-of-type(19)
+{
+    background:hotpink;
+}
+
+/** --------- */
+/** table 1 */
+/** --------- */
+/* 
+
+!!! THIS IS NOT REQUIRED ANYMORE!!!
+
+_unused_rows,
+table:nth-of-type(1) tr:nth-of-type(1),
+table:nth-of-type(1) tr:nth-of-type(2),
+table:nth-of-type(1) tr:nth-of-type(3){
+    display:none;
+}
+
+_ccHeader,
+table:nth-of-type(1) tr:nth-of-type(4) td:nth-of-type(3){
+    background:gold;
+}
+table:nth-of-type(1) tr:nth-of-type(4) td:nth-of-type(10){
+    background:fuchsia;
+}
+
+_ccValue,
+table:nth-of-type(1) tr td:nth-of-type(3):not([colspan]),
+table:nth-of-type(1) tr td:nth-of-type(4):not([colspan]),
+table:nth-of-type(1) tr td:nth-of-type(5):not([colspan]){
+    background:yellow;
+}
+
+__header,
+table:nth-of-type(1) tr:nth-of-type(4) td[colspan]:nth-of-type(4),
+table:nth-of-type(1) tr:nth-of-type(4) td[colspan]:nth-of-type(5),
+table:nth-of-type(1) tr:nth-of-type(4) td[colspan]:nth-of-type(6),
+table:nth-of-type(1) tr:nth-of-type(4) td[colspan]:nth-of-type(7),
+table:nth-of-type(1) tr:nth-of-type(4) td[colspan]:nth-of-type(8),
+table:nth-of-type(1) tr:nth-of-type(4) td[colspan]:nth-of-type(9),
+_table:nth-of-type(1) tr:nth-of-type(4) td[colspan]:nth-of-type(10),
+table:nth-of-type(1) tr:nth-of-type(4) td[colspan]:nth-of-type(11)
+{
+    display:none;
+}
+
+__cells,
+table:nth-of-type(1) tr:not(:nth-of-type(4)) td:not([collapse]):not(:nth-of-type(1)):not(:nth-of-type(2)):not(:nth-of-type(3)):not(:nth-of-type(4)):not(:nth-of-type(5)):not(:nth-of-type(18)):not(:nth-of-type(19))
+{
+    display:none;
+}
+*/
+
+/** --------- */
+/** table 2+ */
+/** --------- */
+
+_unused_rows,
+table:not(:nth-of-type(1)) tr:nth-of-type(1),
+table:not(:nth-of-type(1)) tr:nth-of-type(2){
+    display:none;
+}
+
+_ccHeader,
+table:not(:nth-of-type(1)) tr:nth-of-type(3) td:nth-of-type(3){
+    background:gold;
+}
+table:not(:nth-of-type(1)) tr:nth-of-type(3) td:nth-of-type(10){
+    background:fuchsia;
+}
+
+_ccValue,
+table:not(:nth-of-type(1)) tr td:nth-of-type(3):not([colspan]),
+table:not(:nth-of-type(1)) tr td:nth-of-type(4):not([colspan]),
+table:not(:nth-of-type(1)) tr td:nth-of-type(5):not([colspan]){
+    background:yellow;
+}
+
+__header,
+table:not(:nth-of-type(1)) tr:nth-of-type(3) td[colspan]:nth-of-type(4),
+table:not(:nth-of-type(1)) tr:nth-of-type(3) td[colspan]:nth-of-type(5),
+table:not(:nth-of-type(1)) tr:nth-of-type(3) td[colspan]:nth-of-type(6),
+table:not(:nth-of-type(1)) tr:nth-of-type(3) td[colspan]:nth-of-type(7),
+table:not(:nth-of-type(1)) tr:nth-of-type(3) td[colspan]:nth-of-type(8),
+table:not(:nth-of-type(1)) tr:nth-of-type(3) td[colspan]:nth-of-type(9),
+_table:not(:nth-of-type(1)) tr:nth-of-type(3) td[colspan]:nth-of-type(10),
+table:not(:nth-of-type(1)) tr:nth-of-type(3) td[colspan]:nth-of-type(11)
+{
+    display:none;
+}
+
+_cells,
+table:not(:nth-of-type(1)) tr:not(:nth-of-type(3)) td:not([collapse]):not(:nth-of-type(1)):not(:nth-of-type(2)):not(:nth-of-type(3)):not(:nth-of-type(4)):not(:nth-of-type(5)):not(:nth-of-type(18)):not(:nth-of-type(19))
+{
+    display:none;
+}

@@ -1,0 +1,79 @@
+<mat-label>Layout</mat-label>
+<mat-list role="list">
+    <mat-list-item role="listitem" class="mat-list-item--sliderstyle">
+        <mat-radio-group 
+            aria-label="Switch between different slider styles" 
+            class="settings-radio-group" 
+            [(ngModel)]="__sliderLayoutType"
+            matTooltip="Switch between different slider styles"
+            >
+            <mat-label>Slider</mat-label>
+            <mat-radio-button value="round">Round</mat-radio-button>
+            <mat-radio-button value="horizontal">Horizontal</mat-radio-button>
+            <mat-radio-button value="vertical">Vertical</mat-radio-button>
+            <mat-radio-button value="text">Text only</mat-radio-button>
+        </mat-radio-group>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <mat-slide-toggle [(ngModel)]="__useColumns"
+        matTooltip="Switch between card and columns layout"
+        >
+            Use columns view
+        </mat-slide-toggle>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <mat-slide-toggle [(ngModel)]="__useRadioGroupInsteadOfDropdown"
+        matTooltip="Switch the layout of specific controls between dropdown and radio-group"
+        >
+            Use dropdown/radio-group
+        </mat-slide-toggle>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <div class="settings-drag-and-drop-feature">
+        <mat-slide-toggle [(ngModel)]="__useDragAndDrop"
+        matTooltip="Switch on and off drag and drop"
+        (change)="startRearranging($event)"
+        >
+            {{!__useDragAndDrop?'Rearrange controls layout':'Finish rearranging controls layout'}}
+        </mat-slide-toggle>
+        <button mat-raised-button color="accent" 
+            (click)="restoreDefaultControlsOrder($event)"
+            [disabled]="!__useDragAndDrop || !__canRestoreLayout"
+            >Restore control layout</button>
+        </div>
+    </mat-list-item>
+</mat-list>
+<mat-list role="list">
+    <mat-label>Expert</mat-label>
+    <mat-list-item role="listitem">
+        <mat-slide-toggle [(ngModel)]="__debug"
+        matTooltip="Enable/Disable debug mode"
+        >
+            Debug mode
+        </mat-slide-toggle>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <mat-slide-toggle [(ngModel)]="__logging"
+        matTooltip="Enable/Disable logging MIDI commands"
+        >
+            MIDI Logging 
+        </mat-slide-toggle>
+    </mat-list-item>
+    <!-- currently no effect, see also method 'handleChangeUseGlobalServiceDevices' in `midicc-dashboard.component.ts` -->
+    <!-- <mat-list-item role="listitem" *ngIf="__debug">
+        <mat-slide-toggle [(ngModel)]="__useGlobalServiceDevices" [attr.xdisabled]="'midi_device_selector?.disabled'"
+        matTooltip="Uses a global service that holds the MIDI devices instead of passing the MIDI devices to every component"
+        >
+            Global device service
+        </mat-slide-toggle>
+    </mat-list-item> -->
+</mat-list>
+<!--
+    TODO : not able to open an external link yet...
+<mat-list role="list">
+    <mat-label>Device</mat-label>
+    <mat-list-item role="listitem">
+        <a [attr.href]="'assets/pocket-pod-manual.html'" target="_blank" rel="noopener noreferrer" matTooltip="Pocket POD manual. Opens new window">Pocket POD manual</a>
+    </mat-list-item>
+</mat-list>
+-->

@@ -1,0 +1,190 @@
+.midi-control-widget--program-and-tuner {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.midi-control-widget--programs{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.wrong_device_table_required_device{
+    text-decoration: underline;
+}
+
+.midi-control-widget--eq-on-off--brightness {
+    display: inline-block;
+    text-align: center;
+    .midi-control-widget--eq--brightness {
+        display: block;
+    }
+}
+
+.midi-control-widget--reverb-on-off--type {
+    display: inline-block;
+    text-align: center;
+    .midi-control-widget--reverb--type {
+        display: block;
+    }
+}
+
+.card-container {/* unused, may be used when putting multiple controls in one card */
+    display: inline-block;
+    vertical-align: top;
+    padding-left:1em;
+    padding-right:1em;
+
+    border-right: dashed 1px #ccc;
+
+    &:last-of-type {
+        border:none;
+    }
+}
+
+
+:host {/** Card layout */
+    display: inline-flex;
+    flex-wrap: wrap;
+    /** every control as column */
+    /*
+        display: inline-flex;
+        flex-wrap: nowrap;
+    */
+}
+
+::ng-deep { /** Column layout */
+    .show_as_columns {
+        display: inline-flex;
+        flex-wrap: nowrap;
+        
+        app-control-card {
+            height: max-content;
+        }
+
+        /** align control content vertically centred */
+        mat-card-content {
+            __text-align: center;
+            app-midicc-control {
+                display: block;
+            }
+        }
+
+        app-midicc-control.midi-control-inline {
+            text-align: center;
+        }
+        app-midicc-control.midi-control-widget--eq-on-off--brightness{
+            display: block;
+        }
+    }
+}
+
+.app-control-card-program-and-models {
+    /* prevent from wrapping the program_arrow+guitar_tuner widget and program+model widget */
+    white-space: nowrap;
+}
+
+.no_device_control_card {
+    text-align: center;
+        min-width: 300px;
+    .no_device_logo {
+        text-align: center;
+        background: rgba(255,224,88,1);
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        width: 7.5em;
+        height: 7.5em;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: inset 0px 2px 1px -1px rgba(0, 0, 0, 0.2), inset 0px 1px 1px 0px rgba(0, 0, 0, 0.14), inset 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+        margin-top: 1em;
+        margin-bottom: 1em;
+
+        img.pocket_pod {
+            margin-top: 0.5em;
+        }
+    }
+
+    .music_instrument{
+        transform: rotate(60deg);
+        margin-bottom: -0.3em;
+    }
+    .music_note:nth-of-type(1){
+        transform: rotate(20deg);
+    }
+    .music_note:nth-of-type(2){
+        transform: rotate(-30deg);
+    }
+    .music_note:nth-of-type(3){
+        transform: rotate(-15deg);
+    }
+    .music_note:nth-of-type(4){
+        transform: rotate(-50deg);
+    }
+    .music_note:nth-of-type(5){
+        transform: rotate(15deg);
+    }
+
+    .list_entry{
+        text-align: left;
+    }
+    .list_count{
+        font-weight: 700;
+        font-size: 2em;
+    }
+}
+
+/** DRAGULA */
+:host:not(.show_as_columns) { /** Card layout */
+    .dragula-container {
+        display: inline-flex;
+        flex-wrap: wrap;
+    }
+}
+::ng-deep { /** Column layout */
+    .show_as_columns { 
+        .dragula-container {
+            display: inline-flex;
+            flex-wrap: nowrap;
+
+            app-control-card {
+                height: max-content;
+            }
+        }
+    }
+}
+
+.gu-unselectable {
+
+}
+
+.gu-transit {
+    opacity: 0.2;
+}
+
+.gu-mirror {
+    position: fixed !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+    pointer-events: none;
+    border-radius: 4px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+/* high-performance display:none; helper */
+.gu-hide {
+    left: -9999px !important;
+}
+
+/** END DRAGULA */
+
+::ng-deep {
+    .drag_handle{
+        cursor: grab;
+        position: absolute;
+        right: 0;
+        top: -4px;
+        color: #791f19;
+    }
+}

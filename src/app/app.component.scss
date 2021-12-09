@@ -1,0 +1,13 @@
+::ng-deep{
+    /** prevent selecting text */
+    body {
+        -webkit-user-select: none;
+        -moz-user-select: -moz-none;
+            -ms-user-select: none;
+                user-select: none;
+    }
+    /** no space */
+    body {
+        margin: 0px;
+    }
+}

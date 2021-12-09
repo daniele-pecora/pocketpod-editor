@@ -1,0 +1,5 @@
+{
+    "name": "Pocket POD Editor",
+    "version": "0.0.0",
+    "main": "electron-main.js"
+}

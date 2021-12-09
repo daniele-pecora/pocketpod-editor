@@ -1,0 +1,61 @@
+a.logo-link {
+    text-decoration: none;
+    &:active{
+        color: inherit;
+    }
+    &:visited{
+        color: inherit;
+    }
+    &:link{
+        color: inherit;
+    }
+    &:hover{
+        color: inherit;
+    }
+
+    span.logo-part1,span.logo-part2{
+        font-family: '01 Digit';
+        letter-spacing: 0.2em;
+    }
+    span.logo-part1{
+        font-style: italic;
+    }
+    span.logo-part2{
+        font-weight: 1000;
+        font-size: 2em;
+    }
+    margin-left:1em;
+}
+
+.logo-debug-mode-info {
+    display: block;
+    font-size: 0.5em;
+    color: red;
+    font-weight: 700;
+    transform: rotate(-25deg);
+}
+
+.app-toolbar {
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+.sidenav-menu-button-wrapper--close {
+    text-align: right;
+    padding-right: 1em;
+}
+
+.sidenav-menu-button-wrapper--open {
+    
+}
+
+.mat-drawer-container {
+    _background-color: #ab2927;
+    color: white;
+    background-color: #424242;
+}
+
+.mat-drawer-content {
+    min-height: calc(100vh);
+}

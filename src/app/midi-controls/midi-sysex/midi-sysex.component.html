@@ -1,0 +1,114 @@
+<ng-template #control_card_template>
+    <ng-container *ngIf="!autoLoadPrograms">
+        <div>
+            <button mat-raised-button color="accent" 
+                [disabled]="disabled"
+                (click)="sendSysexMessage_UniversalDeviceInquiry()">Universal Device Inquiry</button>
+        </div>
+        <div>
+            <button mat-raised-button color="accent" 
+                [disabled]="disabled"
+                (click)="sendSysexMessage_DumpProgram()">Program #1 dump</button>
+        </div>
+        <div>
+            <button mat-raised-button color="accent" 
+                [disabled]="disabled"
+                (click)="sendSysexMessage_DumpProgramAll()">Program all dump</button>
+        </div>
+        <div>
+            <button mat-raised-button color="accent" 
+                [disabled]="disabled"
+                (click)="sendSysexMessage_DumpProgramEdit()">Program edit dump</button>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="autoLoadPrograms && !(_programArray_tmp||[]).length && !(programArray||[]).length">
+        <p>No programs found</p>
+        <button mat-raised-button color="primary" 
+                [disabled]="disabled"
+                (click)="sendSysexMessage_DumpProgramAll()">
+                <mat-icon>refresh</mat-icon>
+                Retry loading programs</button>
+    </ng-container>
+
+    <ng-container [ngTemplateOutlet]="program_edit_template"></ng-container>
+
+    <div *ngIf="MIDIChannelEdit"><input pInputText type="number" placeholder="Channel" min="1" max="16" [(ngModel)]="midiChannel" (ngModelChange)="onChangeMidiChannel($event)"></div>
+</ng-template>
+
+<app-control-card *ngIf="!inline;else no_control_card_template" 
+    [Title]="Label" Subtitle="Send MIDI Sysex Messages">
+    <ng-container [ngTemplateOutlet]="control_card_template"></ng-container>
+    <ng-content></ng-content>
+</app-control-card>
+
+<ng-template #no_control_card_template>
+    <div class="no_control_card_template">
+        <ng-container [ngTemplateOutlet]="control_card_template"></ng-container>
+    </div>
+    <ng-content></ng-content>
+</ng-template>
+
+<ng-template #program_edit_template>
+    <div *ngIf="(_programArray_tmp||[]).length">
+        <ng-container *ngIf="(programArray||[]).length<124">
+            <h5>Loading programs {{(_programArray_tmp||[]).length}} of 124</h5>
+            <mat-progress-bar mode="determinate" [value]="100/(124/(_programArray_tmp||[]).length)"></mat-progress-bar>
+        </ng-container>
+
+        <ng-container *ngIf="(programArray||[]).length">
+            <mat-form-field *ngIf="!editMode">
+                <mat-label>Programs</mat-label>
+                <mat-select 
+                    *ngIf="!appSettings_nativeSelectForTouchDevice"
+                    [(value)]="programSelected"
+                    (selectionChange)="onChangeProgramSelected($event)"
+                    [disabled]="disabled"
+                >
+                    <mat-option *ngFor="let item of programArray;let i=index" [value]="item">
+                        {{item.conv.name.program_name}} <small>({{item.val.program}})</small>
+                    </mat-option>
+                </mat-select>
+                <select 
+                    *ngIf="appSettings_nativeSelectForTouchDevice"
+                    matNativeControl 
+                    [(ngModel)]="programSelected"
+                    (ngModelChange)="onChangeProgramSelected($event)"
+                    [disabled]="disabled"
+                >
+                    <option value="" selected></option>
+                    <option *ngFor="let item of programArray;let i=index" [value]="item">
+                        {{item.conv.name.program_name}} <small>({{item.val.program}})</small>
+                    </option>
+                </select>
+            </mat-form-field>
+            <button *ngIf="!editMode" mat-icon-button color="primary" 
+                matTooltip="Edit name and store program"
+                (click)="editMode=true"
+                [disabled]="disabled"
+                ><mat-icon>edit</mat-icon></button>
+        </ng-container>
+
+        <ng-container *ngIf="editMode && programSelected">
+            <div>
+                <mat-form-field>
+                    <mat-label>Programs</mat-label>
+                    <input matInput type="text" [(ngModel)]="programSelected.nam">
+                </mat-form-field>
+                <button  mat-icon-button color="primary" 
+                    matTooltip="Store current program"
+                    (click)="editMode=false;onNameChanged($event)"
+                    [disabled]="disabled"
+                    >
+                    <mat-icon>save</mat-icon>
+                </button>
+                <button  mat-icon-button color="primary" 
+                    matTooltip="Cancel"
+                    (click)="editMode=false"
+                    [disabled]="disabled"
+                    >
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>

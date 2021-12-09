@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Line6 - Pocket POD Editor Online</title>
+    <base href="/">
+
+    <!-- pwa -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="webmidi-app">
+    <meta name="apple-mobile-web-app-title" content="webmidi-app">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-navbutton-color" content="#ab2927">
+    <meta name="msapplication-starturl" content="./index.html?launcher=true">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/web_hi_res_512.png">
+    <!-- /pwa -->
+
+    <!-- icon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="manifest.webmanifest">
+
+    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml"/>
+    <meta name="msapplication-TileColor" content="#ab2927">
+    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ab2927">
+    <!-- icon -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+
+
+    <!-- Google AdSense - NOT YET -->
+    <!-- <script data-ad-client="ca-pub-5625182435351658" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+    <!-- End Google AdSense -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- DON'T REMOVE: is also used for auth of indexing page at Google Search Console -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158509570-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-158509570-1');
+    </script>
+    <!-- End Global site tag (gtag.js) - Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VLRNVJHF1X"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-VLRNVJHF1X');
+    </script>
+
+    <!-- SEO -->
+    <meta name="robots" content="index, nofollow">
+    <meta http-equiv="content-language" content="en">
+    <link rel="canonical" href="https://pocket-pod.web.app" />
+    
+    <meta name="description" content="Edit Line6 Pocket POD online or installable web-app. Full MIDI support and also undocumented features (Wah pedal etc...)">
+    <meta name="keywords" content="Line6, Line, 6, Pocket, POD, POD, Helix, Guitar, Bass, Music, Instruments">
+    
+    <!-- <meta name="author" content="">
+    <meta name="publisher" content="">
+    <meta name="copyright" content=""> -->
+    <meta name="DC.Language" content="en">
+    <!-- <meta name="DC.Creator" content="">
+    <meta name="DC.Publisher" content="">
+    <meta name="DC.Rights" content=""> -->
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="application" />
+    <meta property="og:title" content="Line6 - Pocket POD Editor Online" />
+    <meta property="og:description" content="Edit Line6 Pocket POD online or installable web-app. Full MIDI support and also undocumented features (Wah pedal etc...)" />
+    <meta property="og:image" content="https://pocket-pod.web.app/assets/img/app-image.png" />
+    <meta property="og:url" content="https://pocket-pod.web.app" />
+    <meta property="og:site_name" content="Pocket POD Editor" />
+
+
+    <meta name="twitter:title" content="Line6 - Pocket POD Editor Online">
+    <meta name="twitter:description" content="Edit Line6 Pocket POD online or installable web-app. Full MIDI support and also undocumented features (Wah pedal etc...)">
+    <meta name="twitter:image" content="https://pocket-pod.web.app/assets/img/app-image.png">    
+    <meta name="twitter:site" content="Pocket POD Editor">
+    <meta name="twitter:card" content="summary" />
+    <!-- <meta name="twitter:creator" content=""> -->
+    <!-- /SEO -->
+</head>
+<body>
+
+<noscript>
+    <img  aria-hidden="true" alt="App logo - Image of Pocket POD" src="assets/favicon/android-icon-192x192.png"> Sorry, JavaScript needs to be enabled to run this
+    application
+</noscript>
+
+<app-root>
+    <style>
+        .splash-screen{
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+    <div class="splash-screen">
+    <h2>Pocket POD Editor</h2>
+    <div><img  aria-hidden="true" alt="App logo - Image of Pocket POD" src="assets/favicon/android-icon-192x192.png"></div>
+    <h4>loading...</h4>
+
+    <font color="#FFFFFF">
+        <!-- this is just for adsense : this is a progressive webapp, so content is genrated dynamically :-P -->
+        Edit Line6 Pocket POD online or installable web-app. Full MIDI support and also undocumented features (Wah pedal etc...)
+    </font>
+    </div>
+</app-root>
+
+</body>
+</html>

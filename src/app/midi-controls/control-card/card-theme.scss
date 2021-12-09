@@ -1,0 +1,98 @@
+/** theme **/
+::ng-deep {
+    /** slide toggle */
+    .mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-thumb {
+        background-color: #45E646;
+    }
+
+    _.mat-drawer-container {
+        background-color: #ab2927;
+        color: white;
+        background: #424242;
+        min-height: calc(100vh);
+    }
+
+    /** card */
+    .mat-card {
+        background: #ab2927;
+        color: white;
+        background-color: #ab2927;
+    }
+    .mat-card-header-text {
+        // border: solid 2px #212121;
+        width: 100%;
+        display: block;
+        padding: 0.3em;
+        border-radius: 0.5em;
+        background: #424242;
+        // border-bottom: solid 1px white;
+        margin-bottom: 1em !important;
+        text-align: center;
+        margin-left: unset !important;
+        margin-right: unset !important;
+        /** same as material card but as 'inset' */
+        box-shadow: inset 0px 2px 1px -1px rgba(0, 0, 0, 0.2), inset 0px 1px 1px 0px rgba(0, 0, 0, 0.14), inset 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    }
+    mat-card-subtitle{
+        margin-bottom: unset !important;
+    }
+    /** slider */
+    .mat-slider-vertical .mat-slider-wrapper {
+        left: unset !important;
+    }
+    
+    .mat-slider-vertical {
+        width: unset !important
+    }
+
+    .mat-form-field-wrapper {
+        /** dropdowns */
+        .mat-form-field-flex {
+            // border: solid 2px white;
+            border-radius: 5px;
+            padding-left: 1em;
+            background: #ffe058;
+            box-shadow: inset 0px 2px 1px -1px rgba(0, 0, 0, 0.62), inset 0px 1px 1px 0px rgba(0, 0, 0, 0.58), inset 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+            .mat-form-field-label-wrapper {
+                // only if .mat-form-field-infix has set 'border-top'
+                // top: -1.84375em;
+                // padding-top: 1.84375em;
+            }
+        
+            .mat-select-value, .mat-form-field-empty,/*native element*/ select.mat-input-element {
+                font-family: '01 Digit';
+                font-size: 1em;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                color:#000000b3;
+            }
+            .mat-form-field-empty {
+                // only if .mat-form-field-infix has set 'border-top'
+                // top: unset;
+                color:#00000054;
+            }
+            .mat-form-field-infix {
+                border-top: unset;
+            }
+            .mat-select-arrow {
+                color:#00000054;
+            }
+        }
+
+        /* native element*/
+        // .mat-form-field-type-mat-native-select 
+        .mat-form-field-infix:after {
+            color:#000000b3;
+        }
+
+        .mat-form-field-underline{
+            display: none;
+        }
+
+    }
+    .mat-form-field.mat-focused.mat-primary .mat-select-arrow,
+    .mat-form-field .mat-select.mat-select-disabled .mat-select-arrow {
+        color:#00000054;
+    }
+}

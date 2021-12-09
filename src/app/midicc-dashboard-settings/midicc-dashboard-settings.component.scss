@@ -1,0 +1,23 @@
+.settings-radio-group {
+
+    mat-radio-button {
+        display: block;
+        margin: 0.2em;
+    }
+    mat-label {
+    }
+}
+
+mat-list-item.mat-list-item--sliderstyle{
+    height: unset;
+}
+
+.settings-drag-and-drop-feature{
+    mat-slide-toggle, button{
+        display: block;
+    }
+    button{
+        margin: 0.2em;
+        margin-left: 3em;
+    }
+}

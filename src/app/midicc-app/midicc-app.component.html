@@ -1,0 +1,32 @@
+<mat-toolbar class="app-toolbar">
+    <button mat-icon-button (click)="sidenav.toggle()"
+        matTooltip="Open menu"
+        >
+        <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+        <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+    </button>
+    <a href="" class="logo-link">
+        <span class="logo-part1">pocket</span>&nbsp;<span class="logo-part2">POD</span>
+    </a>
+    <span *ngIf="appSettings.debug" class="logo-debug-mode-info" (click)="appSettings.debug=!appSettings.debug">DEBUG MODE</span>
+    
+    <button mat-icon-button (click)="share()">🙏Share<mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">share</mat-icon></button>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="push" class="app-navigation">
+        <div style="display: block;">
+        <!-- [mode]="mode.value" -->
+        <p class="sidenav-menu-button-wrapper--close">
+            <button mat-icon-button (click)="sidenav.toggle()"
+            matTooltip="Close menu"
+            >
+            <mat-icon>arrow_back</mat-icon>
+        </button></p>
+
+        <app-midicc-dashboard-settings></app-midicc-dashboard-settings>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-midicc-dashboard></app-midicc-dashboard>
+    </mat-sidenav-content>
+</mat-sidenav-container>

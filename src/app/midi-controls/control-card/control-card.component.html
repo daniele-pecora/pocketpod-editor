@@ -1,0 +1,16 @@
+<mat-card 
+    [class.card-dim]="!Autosize || (Autosize!=='both' && Autosize!=='width' && Autosize!=='height')" 
+    [class.card-dim-auto-height]="Autosize==='height'"
+    [class.card-dim-auto-width]="Autosize==='width'"
+    [class.card-dim-mobile-device]="appSettings_cardsForMobile "
+    >
+    <mat-card-header *ngIf="header||subHeader">
+        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-icon *ngIf="showDragHandle" class="drag_handle" matTooltip="Grab here to drag and move">drag_handle</mat-icon>
+        <mat-card-title *ngIf="header">{{header}}</mat-card-title>
+        <mat-card-subtitle *ngIf="subHeader">{{subHeader}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <ng-content></ng-content>
+    </mat-card-content>
+</mat-card>

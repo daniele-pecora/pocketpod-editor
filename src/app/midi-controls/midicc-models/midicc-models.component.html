@@ -1,0 +1,46 @@
+<ng-template #control_card_template>
+    <ng-container *ngFor="let modelTable of ModelTables;let i=index">
+    <div>
+        <mat-form-field>
+            <mat-label>{{modelTable.name}} <small><i>({{modelTable.cc}})</i></small></mat-label>
+            <mat-select 
+                *ngIf="!appSettings_nativeSelectForTouchDevice"
+                [(value)]="ModelTablesSelectedItem[modelTable.cc]"
+                (selectionChange)="onChangeControl($event, modelTable.cc, modelTable.label)"
+                [disabled]="disabled"
+                matTooltip="CC {{modelTable.cc}}"
+            >
+                <mat-option *ngFor="let item of modelTable.values" [value]="item"
+                    matTooltip="MIDI value {{item.value}}"
+                >
+                {{item.label}}
+                </mat-option>
+            </mat-select>
+            <select 
+                *ngIf="appSettings_nativeSelectForTouchDevice"
+                matNativeControl 
+                [(ngModel)]="ModelTablesSelectedItem[modelTable.cc]"
+                (ngModelChange)="onChangeControl($event, modelTable.cc, modelTable.label)"
+                [disabled]="disabled"
+                matTooltip="CC {{modelTable.cc}}"
+            >
+                <option value="" selected></option>
+                <option *ngFor="let item of modelTable.values" [value]="item"
+                    matTooltip="MIDI value {{item.value}}"
+                >
+                {{item.label}}
+                </option>
+            </select>
+        </mat-form-field>
+    </div>
+    </ng-container>
+    <div *ngIf="MIDIChannelEdit"><input pInputText type="number" placeholder="Channel" min="1" max="16" [(ngModel)]="midiChannel" (ngModelChange)="onChangeMidiChannel($event)"></div>
+</ng-template>
+
+<app-control-card *ngIf="!inline;else no_control_card_template" [Title]="Label" [Autosize]="!Label">
+    <ng-container [ngTemplateOutlet]="control_card_template"></ng-container>
+</app-control-card>
+
+<ng-template #no_control_card_template>
+    <ng-container [ngTemplateOutlet]="control_card_template"></ng-container>
+</ng-template>

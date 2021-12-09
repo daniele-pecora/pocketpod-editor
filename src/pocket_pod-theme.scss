@@ -1,0 +1,57 @@
+@import '../node_modules/@angular/material/theming';
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+/* For use in src/lib/core/theming/_palette.scss */
+@import './pocket_pod-palette';
+
+
+$pocket_pod-background-color:#ab2927;
+
+// $pocket_pod-background-color:mat-palette($md-pocketpodyellow, A200, A100, A400);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$pocket_pod-theme-primary: mat-palette($md-pocketpodsilver);
+$pocket_pod-theme-accent: mat-palette($md-pocketpodyellow, A200, A100, A400); 
+// The warn palette is optional (defaults to red).
+$pocket_pod-theme-warn: mat-palette($mat-red);
+
+
+// Create the theme object (a Sass map containing all of the palettes).
+$pocket_pod-theme-light: mat-light-theme($pocket_pod-theme-primary, $pocket_pod-theme-accent, $pocket_pod-theme-warn);
+$pocket_pod-theme-dark: mat-dark-theme($pocket_pod-theme-primary, $pocket_pod-theme-accent, $pocket_pod-theme-warn);
+
+
+// set the final theme
+$theme:$pocket_pod-theme-dark;
+
+
+// Insert custom background color
+$background: map-get($theme, background);
+$background: map_merge($background, (background: $pocket_pod-background-color));
+$theme: map_merge($theme, (background: $background));
+
+
+@debug '*** BACKGROUND ****';
+@debug  $background;
+@debug '**** THEME: ****';
+@debug $theme;
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($theme);
+
+
+/** get font from theme */
+$mat-typography-config: mat-typography-config();
+$level: body-1;
+$font-family: mat-font-family($mat-typography-config, $level);
+mat-sidenav-container {
+    /** set theme font to navigation drawer */
+    font-family: $font-family;
+}

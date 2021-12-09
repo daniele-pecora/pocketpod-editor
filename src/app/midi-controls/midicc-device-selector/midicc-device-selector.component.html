@@ -1,0 +1,59 @@
+<app-control-card Title="Devices">
+    <div>
+        <mat-form-field>
+            <mat-label>Output Device</mat-label>
+            <mat-select 
+                *ngIf="!appSettings_nativeSelectForTouchDevice"
+                [(value)]="outputDevice" 
+                (selectionChange)="onChangeOutputDevice($event)"
+                [disabled]="disabled || !(outputDevices||[]).length"
+            >
+                <mat-option *ngFor="let item of outputDevices" [value]="item.value">
+                    {{item.label}} <i>{{item.value.state ==='connected'?'✔':'✘'}}</i>
+                </mat-option>
+            </mat-select>
+            <select 
+                *ngIf="appSettings_nativeSelectForTouchDevice"
+                matNativeControl 
+                [(ngModel)]="outputDevice" 
+                (ngModelChange)="onChangeInputDevice($event)"
+                [disabled]="disabled || !(outputDevices||[]).length"
+            >
+                <option value="" selected></option>
+                <option *ngFor="let item of outputDevices" [value]="item.value">
+                    {{item.label}} <i>{{item.value.state ==='connected'?'✔':'✘'}}</i>
+                </option>
+            </select>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Input Device</mat-label>
+            <mat-select 
+                *ngIf="!appSettings_nativeSelectForTouchDevice"
+                [(value)]="inputDevice" 
+                (selectionChange)="onChangeInputDevice($event)"
+                [disabled]="disabled || !(inputDevices||[]).length"
+            >
+                <mat-option *ngFor="let item of inputDevices" [value]="item.value">
+                    {{item.label}} <i>{{item.value.state ==='connected'?'✔':'✘'}}</i>
+                </mat-option>
+            </mat-select>
+            <select 
+                *ngIf="appSettings_nativeSelectForTouchDevice"
+                matNativeControl 
+                [(ngModel)]="inputDevice" 
+                (ngModelChange)="onChangeInputDevice($event)"
+                [disabled]="disabled || !(inputDevices||[]).length"
+            >
+                <option value="" selected></option>
+                <option *ngFor="let item of inputDevices" [value]="item.value">
+                    {{item.label}} <i>{{item.value.state ==='connected'?'✔':'✘'}}</i>
+                </option>
+            </select>
+        </mat-form-field>
+    </div>
+    
+    <div *ngIf="MIDIChannelEdit"><input [disabled]="disabled" pInputText type="number" placeholder="Channel" min="1" max="16" [(ngModel)]="midiChannel" (input)="onChangeMidiChannel($event)"></div>
+    <ng-content></ng-content>
+</app-control-card>

@@ -1,0 +1,136 @@
+.card-dim {
+    min-width: 600px;
+    max-width: 600px;
+}
+
+.sub_header_info {
+    opacity: 0.5;
+    font-size: 0.8em;
+    font-weight: normal;
+    margin-left: 1em;
+}
+
+.mat-slider-horizontal {
+    width: 100%;
+}
+
+
+.control-label, .control-label--no-control-card {
+    opacity: 0.7;
+    font-size: 0.7rem;
+    display: block;
+    margin: 0.4rem;
+}
+
+.no_control_card_template {
+    display: inline-block;
+    text-align: center;
+
+    h3 .sub_header_info_title {
+        display: none;
+    }
+    h3 .sub_header_info {
+        text-align: center;
+        width: 100%;
+        display: inline-block;
+        margin-left: unset;
+    }
+
+    .control-label {
+        display: none;
+    }
+}
+
+.control_automation_template {
+    display: inline-block;
+    text-align: center;
+}
+
+.midi-control-inputOnly {
+    
+}
+
+.midi-control-radio-group{
+    display: flex;
+    flex-direction: column;
+    // margin: 15px 0;
+    mat-radio-button {
+        margin: 0.4em;
+        font-size: 0.7rem;
+    }
+    mat-label {
+        font-size: 0.7rem;
+    }
+}
+/* test */
+.sub_header {
+    display: none;
+}
+
+
+.slider-midi-value, .slider-midi-cc-value {
+    display: block;
+
+    input, input:focus {
+        border:none;
+        outline: none;
+        text-align: center;
+    }
+    input:focus {
+        text-decoration: underline;
+    }
+    input {
+        opacity: 0.6;
+    }
+    /** START: hide spinner and arrows */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {//Chrome, Safari, Edge, Opera
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type=number] {//Firefox
+        -moz-appearance:textfield;
+    }
+    /** END: hide spinner and arrows */
+}
+
+.control--disabled {
+    opacity: 0.1;
+}
+
+::ng-deep {
+    /** THIS CAN'T BE USED SINCE IT DOESN'T WORK WELL WITH THE DRAG AND TAP DIRECTION!!! */
+    /** rotate switch to vertical */
+    _mat-slide-toggle.mat-slide-toggle--vertical .mat-slide-toggle-bar {
+        transform: rotate(90deg);
+    }
+    /** fix space when stacked vertical with other elements */
+    _.mat-slide-toggle.mat-slide-toggle--vertical {
+        margin-bottom: 0.4rem;
+    }
+}
+
+// /** theme **/
+// theming is made in ./control-card/card-theme.scss
+
+.slider-midi-value input[type=number], .slider-midi-cc-value input[type=number] {
+    display: inline-block;
+    font-family: '01 Digit';
+    font-size: 1em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    border-radius: 0.2em;
+    opacity: 1.0;
+    padding-top:0.3em;
+    padding-bottom:0.23em;
+    background: #ffe058;
+    color:#000000b3;
+    box-shadow: inset 0px 2px 1px -1px rgba(0, 0, 0, 0.62), inset 0px 1px 1px 0px rgba(0, 0, 0, 0.58), inset 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+
+.midi-control-disabled {
+    mat-card-content.mat-card-content {
+        opacity: 0.7;
+    }
+}

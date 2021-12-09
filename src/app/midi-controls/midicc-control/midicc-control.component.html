@@ -1,0 +1,227 @@
+<ng-template #control_card_template_content>
+    <!-- ACTIVE TOGGLE -->
+    <mat-slide-toggle 
+        *ngIf="activeCC && activeCC>0" 
+        class="mat-slide-toggle--vertical"
+        [(ngModel)]="activeState" 
+        (change)="handleChangeActiveStatus($event)"
+        [disabled]="disabled"
+        [color]="color"
+        >
+        <span matTooltip="CC: {{activeCC}}">{{MIDICCActivateLabel}}</span>
+    </mat-slide-toggle>
+
+    <!-- MIDI CC -->
+    <ng-container *ngIf="!MIDICC && MIDICC !== 0">
+        <div>
+            <h3 class="sub_header"><span class="sub_header_info_title">MIDI Control</span> <span class="sub_header_info">{{midiControlSlider_value||0}} - {{midiCCLabel}}</span></h3>
+            <!--  -->
+            <span 
+                class="slider-midi-cc-value"
+                [class.control--disabled]="disabled"
+                *ngIf="!round || inputOnly"
+                >
+                <input [disabled]="disabled || autoActiveState" pInputText type="number" placeholder="..." 
+                    min="1" 
+                    max="127" 
+                    [(ngModel)]="midiControlSlider_value"
+                    matTooltip="Type to change value"
+                    >
+            </span>
+            <ng-container *ngIf="!inputOnly">
+                <mat-slider
+                    *ngIf="!round"
+                    [max]="127"
+                    [min]="0"
+                    [step]="1"
+                    [thumbLabel]="true"
+                    [tickInterval]="'auto'"
+                    [(ngModel)]="midiControlSlider_value"
+                    [vertical]="vertical"
+                    [disabled]="disabled || autoActiveState"
+                    [color]="color"
+                    >
+                </mat-slider>
+                <app-round-slider *ngIf="round"
+                    [Disabled]="disabled || autoActiveState"
+                    [(ngModel)]="midiControlSlider_value"
+                    [Animation]="!autoActiveState"
+                ></app-round-slider>
+            </ng-container>
+            <label class="control-label" matTooltip="CC: {{midiControlSlider_value}} - {{midiCCLabel}}">
+                <mat-label><!--MIDI Control {{midiControlSlider_value||0}} - -->{{midiCCLabelShort}}</mat-label>
+            </label>
+        </div>
+    </ng-container>
+    <!-- MIDI Value input/slider -->
+    <ng-container *ngIf="!midiPredefinedValues">
+        <ng-container *ngIf="null===MIDICC || (MIDICC>0 && activeCC!==MIDICC)">
+        <div>
+            <h3 class="sub_header"><span class="sub_header_info_title">MIDI Value</span> <span class="sub_header_info">{{midiValueSlider_value||0}}</span></h3>
+
+
+            <!--  -->
+            <span 
+                class="slider-midi-value"
+                [class.control--disabled]="disabled"
+                *ngIf="!round || inputOnly"
+                >
+                <input [disabled]="disabled || autoActiveState" pInputText type="number" placeholder="..." 
+                    min="1" 
+                    max="127" 
+                    [(ngModel)]="midiValueSlider_value"
+                    (ngModelChange)="sendControlChange($event)"
+                    matTooltip="Type to change value"
+                    >
+            </span>
+            <ng-container *ngIf="!inputOnly">
+                <mat-slider
+                    *ngIf="!round"
+                    [max]="127"
+                    [min]="0"
+                    [step]="1"
+                    [thumbLabel]="true"
+                    [tickInterval]="'auto'"
+                    [(ngModel)]="midiValueSlider_value"
+                    [vertical]="vertical"
+                    (change)="onSliderInputChange($event)"
+                    (input)="onSliderMoved($event)"
+                    [disabled]="disabled || autoActiveState"
+                    [color]="color"
+                    >
+                </mat-slider>
+                <app-round-slider *ngIf="round"
+                    [Disabled]="disabled || autoActiveState"
+                    [(ngModel)]="midiValueSlider_value"
+                    (ngModelChange)="sendControlChange($event)"
+                    [Animation]="!autoActiveState"
+                ></app-round-slider>
+            </ng-container>
+            <label class="control-label" matTooltip="CC: {{midiControlSlider_value}} - {{midiCCLabel}} - Value: {{midiValueSlider_value||0}}">
+                <mat-label>MIDI Value {{midiValueSlider_value||0}}</mat-label>
+            </label>
+        </div>
+        </ng-container>
+    </ng-container>
+    <!-- MIDI Value predefined values -->
+    <ng-container *ngIf="midiPredefinedValues">
+        <div>
+            <mat-radio-group [(ngModel)]="midiValueSlider_value"
+            class="midi-control-radio-group"
+            *ngIf="radioPredefinedValues"
+            [disabled]="disabled || autoActiveState"
+            >
+                <mat-label *ngIf="inline">{{Label}}</mat-label>
+                <mat-radio-button *ngFor="let item of midiPredefinedValues" [value]="item.value">
+                    {{item.label}}
+                </mat-radio-button>
+            </mat-radio-group>
+            
+            <mat-form-field *ngIf="!styleRadioPredefinedValues">
+                <mat-label *ngIf="inline">{{Label}}</mat-label>
+                <mat-select 
+                    *ngIf="!appSettings_nativeSelectForTouchDevice"
+                    [(value)]="midiValueSlider_value"
+                    (selectionChange)="onSliderInputChange($event)"
+                    matTooltip="CC: {{midiControlSlider_value}}"
+                    [disabled]="disabled"
+                >
+                    <mat-option *ngFor="let item of midiPredefinedValues" [value]="item.value">
+                        {{item.label}}
+                    </mat-option>
+                </mat-select>
+                <select 
+                    *ngIf="appSettings_nativeSelectForTouchDevice"
+                    matNativeControl 
+                    [(ngModel)]="midiValueSlider_value"
+                    (ngModelChange)="onSliderInputChange($event)"
+                    matTooltip="CC: {{midiControlSlider_value}}"
+                    [disabled]="disabled"
+                    >
+                    <option value="" selected></option>
+                    <option *ngFor="let item of midiPredefinedValues" [value]="item.value">
+                        {{item.label}}
+                    </option>
+                </select>
+            </mat-form-field>
+        </div>
+    </ng-container>
+
+
+    <div *ngIf="MIDIChannelEdit"><input [disabled]="disabled" pInputText type="number" placeholder="Channel" min="1" max="16" [(ngModel)]="midiChannel" (ngModelChange)="onChangeMidiChannel($event)"></div>
+</ng-template>
+
+<app-control-card *ngIf="!inline;else no_control_card_template" 
+    [Title]="Label" 
+    Subtitle="{{Label?(midiCCLabelShort + ' - CC ' + midiControlSlider_value):''}}"
+    [Autosize]="!Label?true:(round?'height':null)"
+
+    [class.midi-control-horizontal]="'horizontalSlider'===styleType"
+    [class.midi-control-vertical]="'verticalSlider'===styleType"
+    [class.midi-control-round]="'roundSlider'===styleType"
+    [class.midi-control-inputOnly]="'inputOnly'===styleType"
+    [class.midi-control-radioGroup]="'radioGroup'===styleType"
+    [class.midi-control-select]="'select'===styleType"
+
+    [ShowDragHandle]="showDragHandle"
+    >
+    <ng-container [ngTemplateOutlet]="control_card_template_content"></ng-container>
+    <ng-content></ng-content>
+</app-control-card>
+
+<ng-template #no_control_card_template>
+    <div class="no_control_card_template"
+
+    [class.midi-control-horizontal]="'horizontalSlider'===styleType"
+    [class.midi-control-vertical]="'verticalSlider'===styleType"
+    [class.midi-control-round]="'roundSlider'===styleType"
+    [class.midi-control-inputOnly]="'inputOnly'===styleType"
+    [class.midi-control-radioGroup]="'radioGroup'===styleType"
+    [class.midi-control-select]="'select'===styleType"
+    >
+        <ng-container [ngTemplateOutlet]="control_card_template_content"></ng-container>
+        <label *ngIf="Label && !midiPredefinedValues" class="control-label--no-control-card" matTooltip="CC: {{midiControlSlider_value}}">
+            <mat-label>{{Label}}</mat-label>
+        </label>
+    </div>
+    <ng-content></ng-content>
+</ng-template>
+
+<ng-template #control_automation_template>
+    <div class="control_automation_template">
+        <span 
+        class="slider-midi-value"
+        [class.control--disabled]="disabled"
+        *ngIf="autoActiveState"
+        >
+        <input [disabled]="disabled" pInputText type="number" placeholder="..." 
+            min="10" 
+            max="10000" 
+            [(ngModel)]="autoTime"
+            matTooltip="Type to change time value"
+            (ngModelChange)="handleChangeAutoActiveStatus($event)"
+            >
+            <label class="control-label--no-control-card" matTooltip="Time">
+                <mat-label>Time</mat-label>
+            </label>
+        </span>
+        <!-- Automation activation -->
+        <mat-slide-toggle 
+            *ngIf="autoTime>0" 
+            class="mat-slide-toggle--vertical"
+            [(ngModel)]="autoActiveState" 
+            (change)="handleChangeAutoActiveStatus($event)"
+            [disabled]="disabled"
+            [color]="color"
+            >
+            <!-- <span matTooltip="{{autoLabel}}"
+                class="control-label--no-control-card"
+            >{{autoLabel}}</span> -->
+        </mat-slide-toggle>
+        <label class="control-label--no-control-card" matTooltip="Time">
+            <mat-label>{{autoLabel}}</mat-label>
+        </label>
+    </div>
+</ng-template>
+
+<ng-container *ngIf="autoTime>0" [ngTemplateOutlet]="control_automation_template"></ng-container>

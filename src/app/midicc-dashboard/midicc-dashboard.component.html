@@ -1,0 +1,1035 @@
+<!-- ONBOARDING -->
+<ng-container *ngIf="__debug || !_found_OutputDevice 
+|| 
+(
+    (midi_device_selector?.inputDevice && midi_device_selector?.defaultInputDeviceName?.toUpperCase()!==midi_device_selector?.inputDevice?.name?.toUpperCase())
+        || 
+    (midi_device_selector.outputDevice && midi_device_selector?.defaultOutputDeviceName?.toUpperCase()!==midi_device_selector.outputDevice?.name?.toUpperCase())
+)
+">
+    <app-control-card Title="Line6 Pocket POD" Subtitle="Where is it?"
+        Autosize="both"
+        *ngIf="!_found_OutputDevice
+        || 
+        (
+            (midi_device_selector?.inputDevice && midi_device_selector?.defaultInputDeviceName?.toUpperCase()!==midi_device_selector?.inputDevice?.name?.toUpperCase())
+            || 
+            (midi_device_selector.outputDevice && midi_device_selector?.defaultOutputDeviceName?.toUpperCase()!==midi_device_selector.outputDevice?.name?.toUpperCase())
+        )
+        "
+        class="no_device_control_card"
+        >
+        <p><mat-icon>usb</mat-icon> Is your Pocket POD connected?</p>
+        <p class="no_device_logo"><img aria-hidden="true" alt="Pocket POD" class="pocket_pod" width="100" src="assets/img/pocket-pod-logo.svg"></p>
+        <p class="list_entry"><span class="list_count">1.</span> Plug in your Pocket POD</p>
+        <p><img aria-hidden="true" alt="USB connection cable" width="50" src="assets/img/usb-cable.svg"></p>
+        <p class="list_entry"><span class="list_count">2.</span> Press "Connect"</p>
+        <p>
+        <button
+        matTooltip="Press here to re-connect Pocket POD MIDI device"
+        mat-raised-button color="primary" (click)="reload_link.click()">
+        <a href="" #reload_link></a>
+        <mat-icon>refresh</mat-icon>Connect<!-- MIDI device--></button>
+        </p>
+        <p class="list_entry"><span class="list_count">3.</span> Be creative</p>
+        <p>
+            <mat-icon class="music_note">music_note</mat-icon>
+            <mat-icon class="music_note">music_note</mat-icon>
+            <img aria-hidden="true" alt="Electric guitar" class="music_instrument" width="50" src="assets/img/electric-guitar.svg">
+            <mat-icon class="music_note">music_note</mat-icon>
+            <mat-icon class="music_note">music_note</mat-icon>
+            <mat-icon class="music_note">music_note</mat-icon>
+        </p>
+    </app-control-card>
+</ng-container>
+<!-- WRONG DEVICE TEMPLATE -->
+<ng-template #wrong_device_table>
+    <table>
+        <ng-container *ngIf="midi_device_selector?.defaultInputDeviceName?.toUpperCase()!==midi_device_selector?.inputDevice?.name?.toUpperCase()">
+                <tr><th colspan="2">MIDI Input device</th></tr>
+                <tr><td>required</td><td class="wrong_device_table_required_device">{{midi_device_selector?.defaultInputDeviceName}}</td></tr>
+                <tr><td>found</td><td> {{midi_device_selector?.inputDevice?.name}}</td></tr>
+        </ng-container>
+        <ng-container *ngIf="midi_device_selector?.defaultOutputDeviceName?.toUpperCase()!==midi_device_selector.outputDevice?.name?.toUpperCase()">
+                <tr><th colspan="2">MIDI Output device</th></tr>
+                <tr><td>required</td><td class="wrong_device_table_required_device">{{midi_device_selector?.defaultOutputDeviceName}}</td></tr>
+                <tr><td>found</td><td> {{midi_device_selector?.outputDevice?.name}}</td></tr>
+        </ng-container>
+    </table>
+</ng-template>
+<!-- DEVICE SELECTOR -->
+<app-midicc-device-selector 
+    (onOutputDeviceChange)="outputDeviceChange($event)"
+    (onInputDeviceChange)="inputDeviceChange($event)"
+    (onMidiChannelChange)="midiChannelChange($event)"
+    defaultOutputDeviceName="Line 6 Pocket POD"
+    defaultInputDeviceName="Line 6 Pocket POD"
+    defaultMidiChannel="1"
+    [MIDIChannelEdit]="false"
+    #midi_device_selector
+    [Hidden]="!__debug"
+    >
+    <ng-container
+    *ngIf="
+    (midi_device_selector?.inputDevice && midi_device_selector?.defaultInputDeviceName?.toUpperCase()!==midi_device_selector?.inputDevice?.name?.toUpperCase())
+        || 
+    (midi_device_selector.outputDevice && midi_device_selector?.defaultOutputDeviceName?.toUpperCase()!==midi_device_selector.outputDevice?.name?.toUpperCase())
+    "
+    >
+        <h3>Wrong device</h3>
+        <ng-container [ngTemplateOutlet]="wrong_device_table"></ng-container>
+    </ng-container>
+</app-midicc-device-selector>
+<!-- WRONG DEVICE -->
+<app-control-card Title="Wrong device" Subtitle="Not the required device"
+    *ngIf="!__debug && !__showAllControlsDisabled && 
+    (
+        (midi_device_selector?.inputDevice && midi_device_selector?.defaultInputDeviceName?.toUpperCase()!==midi_device_selector?.inputDevice?.name?.toUpperCase())
+    || 
+        (midi_device_selector.outputDevice && midi_device_selector?.defaultOutputDeviceName?.toUpperCase()!==midi_device_selector.outputDevice?.name?.toUpperCase())
+    )
+        ">
+    <ng-container [ngTemplateOutlet]="wrong_device_table"></ng-container>
+    <h4>Enable <em>debug mode</em> in settings menu to see all devices</h4>
+</app-control-card>
+
+<ng-container *ngIf="__debug || __showAllControlsDisabled || _found_OutputDevice">
+
+<app-control-card Title="Program Center" Subtitle="Make your choice" class="app-control-card-program-and-models">
+    <app-midicc-program [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label=""
+        [styleInline]="true"
+        class="midi-control-widget--program-and-tuner"
+        #program_control
+        (MIDIProgramChange)="program_select.selectProgramByNumber($event.program);onSelectedProgramChange(program_select.programSelected)"
+        [MIDIProgramsMax]="124"
+        [MIDIProgramsMax]="1"
+        [Disabled]="__showAllControlsDisabled || (!__debug && !program_select.programSelected)"
+    >
+        <app-midicc-program [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Toggle tuner on/off"
+            Note="Toggle tuner on/off"
+            MIDIValue="125"
+            [styleToggleOnly]="true"
+            styleIconOnly="surround_sound"
+            [styleInline]="true"
+            class="midi-control-widget--tuner"
+            [Disabled]="__showAllControlsDisabled || (!__debug && !program_select.programSelected)"
+        ></app-midicc-program>
+    </app-midicc-program>
+    <app-midi-sysex  [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="MIDI Sysex"
+        [styleInline]="true"
+        [AutoLoadPrograms]="true"
+        class="midi-control-widget--programs"
+        #program_select
+        (SelectedProgramChange)="
+            program_control.midiProgramNumber=program_select.programSelected.val.program+1;
+            program_control.updateProgramByProgramNumber(program_control.midiProgramNumber);
+            onSelectedProgramChange($event);
+            program_models.selectByMidiCCAndValue(12,currentProgram?.conv?.preamp?.amp_model);
+            program_models.selectByMidiCCAndValue(71,currentProgram?.conv?.cab_sim_?.cabinet_type);
+            program_models.selectByMidiCCAndValue(19,currentProgram?.conv?.fx_config?.effects_select);
+            "
+        [Disabled]="__showAllControlsDisabled"
+    >
+    <div>
+        <app-midicc-models 
+        [OutputDevice]="OutputDevice" 
+        [InputDevice]="InputDevice"
+        (onChangeControl)="onModelsChangeControl($event)"
+        [styleInline]="true"
+        Label="Models"
+        [Disabled]="__showAllControlsDisabled || (!__debug && !program_select.programSelected)"
+        #program_models
+        ></app-midicc-models>
+    </div>
+    </app-midi-sysex>
+</app-control-card>
+
+<!-- General CC for debug mode -->
+<app-midicc-control *ngIf="__debug" [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+    Label="General CC"
+    Note="General MIDI Control"
+    (onMidiChannelChange)="onMidiChannelChange($event)"
+    [styleVertical]="__useVerticalSlider"
+    [styleInline]="false"
+    [styleRound]="__useRoundSlider"
+    [styleInputOnly]="__inputOnly"
+    [Disabled]="__showAllControlsDisabled"
+></app-midicc-control>
+
+<!-- DRAGABLE CONTROLS -->
+<ng-template #controls_dragable>
+
+<ng-container *ngFor="let control of controls_drag_order">
+<ng-container [ngSwitch]="control">
+
+<ng-container *ngSwitchCase="'Volume'">
+<app-control-card Title="Volume" Subtitle="Make some noise!"
+    Autosize="width" [ShowDragHandle]="dragEnabled"
+>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Vol"
+        Note="Volume"
+        MIDICC="7"
+        (onMidiChannelChange)="onMidiChannelChange($event)"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.vol_pedal?.level"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Min"
+        Note="Volume pedal min"
+        MIDICC="46"
+        (onMidiChannelChange)="onMidiChannelChange($event)"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.vol_pedal?.minimum"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Pos"
+        Note="Volume pedal min position"
+        MIDICC="47"
+        (onMidiChannelChange)="onMidiChannelChange($event)"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.vol_pedal?.position"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Chn. Vol"
+        Note="Channel Volume"
+        MIDICC="17"
+        (onMidiChannelChange)="onMidiChannelChange($event)"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.preamp?.chan_vol"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="A.I.R"
+        Note="Simulated output signals (DIRECT, AMP) - A.I.R. Ambience Level"
+        MIDICC="72"
+        Autosize="width"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.cab_sim_?.air"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+</app-control-card>
+</ng-container>
+<ng-container *ngSwitchCase="'EQ'">
+<app-control-card Title="EQ" Subtitle="Equalizer"
+    Autosize="width" [ShowDragHandle]="dragEnabled"
+>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Boost"
+        Note="EQ Enable (Presence Bump) - Presence Boost"
+        MIDICC="27"
+        MIDICCActivate="27"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="!currentProgram?.conv?.switches?.eq_enable__presence_bump_?0:64"
+        class="midi-control-widget--eq-on-off--brightness"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        #midi_control_eq
+        [Disabled]="__showAllControlsDisabled"
+    >    
+
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Bright"
+        Note="Bright Switch"
+        MIDICC="73"
+        MIDICCActivate="73"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.switches?.bright_switch_enable"
+        class="midi-control-widget--eq--brightness"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+    </app-midicc-control>
+
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Bass"
+        MIDICC="14"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.preamp?.bass"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Mid"
+        MIDICC="15"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.preamp?.mid"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Treble"
+        MIDICC="16"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.preamp?.treble"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Presence"
+        MIDICC="21"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.preamp?.presence"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+
+</app-control-card>
+</ng-container>
+<ng-container *ngSwitchCase="'Drive'">
+<app-control-card Title="Drive" Subtitle="Make some noise!"
+    Autosize="width" [ShowDragHandle]="dragEnabled"
+>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Boost"
+        Note="Comp Boost - Drive Enable"
+        MIDICC="26"
+        MIDICCActivate="26"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.switches?.drive_enable"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        #midi_control_drive
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Drive"
+        Note="Drive level"
+        MIDICC="13"
+        [styleInline]="true"
+        [styleVertical]="__useVerticalSlider"
+        [MIDIValue]="currentProgram?.conv?.preamp?.drive"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Drive 2"
+        Note="Drive 2 level"
+        MIDICC="20"
+        [styleInline]="true"
+        [styleVertical]="__useVerticalSlider"
+        [MIDIValue]="currentProgram?.conv?.preamp?.drive_2"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+</app-control-card>
+</ng-container>
+<ng-container *ngSwitchCase="'Noise Gate'">
+<app-control-card Title="Noise Gate" Subtitle="Silence please!"
+    Autosize="width" [ShowDragHandle]="dragEnabled"
+>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Enable"
+        Note="Noise gate on/off"
+        MIDICC="22"
+        MIDICCActivate="22"
+        MIDICCActivateEnable="64"
+        MIDICCActivateDisable="0"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="!currentProgram?.conv?.switches?.noise_gate_enable?0:64"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        #midi_control_noise_gt
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Threshold"
+        Note="Noise gate threshold"
+        MIDICC="23"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.noise_gt?.threshold"
+        [Disabled]="!midi_control_noise_gt.activeState"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Decay"
+        Note="Noise gate decay time"
+        MIDICC="24"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.noise_gt?.decay_time"
+        [Disabled]="!midi_control_noise_gt.activeState"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+</app-control-card>
+</ng-container>
+<ng-container *ngSwitchCase="'Boost'">
+<app-control-card Title="Boost" Subtitle="Boost some shit!"
+    [Autosize]="appSettings.deviceDetectorService.mobileDevice?'height':'width'" 
+    [ShowDragHandle]="dragEnabled"
+>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Distortion"
+        Note="Distortion - Stomp Enable - Drive Boost"
+        MIDICC="0x19"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        MIDICCActivate="0x19"
+        MIDICCActivateEnable="64"
+        MIDICCActivateDisable="0"
+        [MIDIValue]="!currentProgram?.conv?.switches?.distortion_enable?0:64"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        #switches_distortion_enable
+        [Disabled]="__showAllControlsDisabled"
+    ><!--CC 25--></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Drive/Comp"
+        Note="Drive Enable - Comp Enable on/off"
+        MIDICC="26"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        MIDICCActivate="26"
+        MIDICCActivateEnable="64"
+        MIDICCActivateDisable="0"
+        [MIDIValue]="!currentProgram?.conv?.switches?.drive_enable?0:64"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        #switches_drive_enable
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Equalizer"
+        Note="EQ Enable (Presence Bump) - Presence Boost"
+        MIDICC="27"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        MIDICCActivate="27"
+        MIDICCActivateEnable="64"
+        MIDICCActivateDisable="0"
+        [MIDIValue]="!currentProgram?.conv?.switches?.eq_enable__presence_bump_?0:64"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        #switches_eq_enable__presence_bump_
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+</app-control-card>
+</ng-container>
+<ng-container *ngSwitchCase="'Reverb'">
+<app-control-card Title="Reverb" Subtitle="Hall / Room"
+    Autosize="width" [ShowDragHandle]="dragEnabled"
+>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="On/Off"
+        Note="Reverb on/off"
+        MIDICC="36"
+        MIDICCActivate="36"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        MIDICCActivateEnable="64"
+        MIDICCActivateDisable="0"
+        [MIDIValue]="!currentProgram?.conv?.switches?.reverb_enable?0:64"
+        class="midi-control-widget--reverb-on-off--type"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        #midi_control_reverb
+        [Disabled]="__showAllControlsDisabled"
+    >
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Room/Spring"
+        Note="Reverb type Room(Hall(/Spring"
+        MIDICC="37"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        MIDICCActivate="37"
+        [MIDIValue]="currentProgram?.conv?.reverb?.reverb_type"
+        class="midi-control-widget--reverb--type"
+        [Disabled]="__showAllControlsDisabled || !midi_control_reverb.activeState"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        >
+    <!--
+        Im may require to set the CC 24 to value 127 simultanously
+        Addional_ON_MIDICC="36"
+        Addional_OFF_MIDICC="36"
+        Addional_ON_MIDICC_Values="127"
+        Addional_OFF_MIDICC_Values="127"
+    -->
+    </app-midicc-control>
+    </app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Level"
+        Note="Reverb level"
+        MIDICC="18"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        MIDICCActivate="36"
+        MIDICCActivateEnable="64"
+        MIDICCActivateDisable="0"
+        [MIDIValue]="currentProgram?.conv?.reverb?.level"
+        [Disabled]="__showAllControlsDisabled || !midi_control_reverb.activeState"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+    ></app-midicc-control>
+
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Decay"
+        Note="Reverb decay"
+        MIDICC="38"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.reverb?.decay"
+        [Disabled]="__showAllControlsDisabled || !midi_control_reverb.activeState"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Tone"
+        Note="Reverb tone"
+        MIDICC="39"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.reverb?.tone"
+        [Disabled]="__showAllControlsDisabled || !midi_control_reverb.activeState"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Diffusion"
+        Note="Reverb diffusion"
+        MIDICC="40"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.reverb?.diffusion"
+        [Disabled]="__showAllControlsDisabled || !midi_control_reverb.activeState"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Density"
+        Note="Reverb density"
+        MIDICC="41"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.reverb?.density"
+        [Disabled]="__showAllControlsDisabled || !midi_control_reverb.activeState"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+    ></app-midicc-control>
+</app-control-card>
+</ng-container>
+<ng-container *ngSwitchCase="'Swell'">
+<app-control-card Title="Swell" Subtitle="Subtile attack!"
+    Autosize="width"
+    *ngIf="__debug || __showAllControlsDisabled || -1!==[14].indexOf((program_models.ModelTablesSelectedItem[19]||{value:-1}).value)"
+    [ShowDragHandle]="dragEnabled"
+>
+    <!--
+      { value: 14, label: 'Delay/Swell' },
+    -->
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Attach time"
+        Note="Swell Attack Time"
+        MIDICC="49"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.swell?.attack_time"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+</app-control-card>
+</ng-container>
+<ng-container *ngSwitchCase="'Delay'">
+<app-control-card Title="Delay" Subtitle="Echo"
+    Autosize="width"
+    *ngIf="__debug || __showAllControlsDisabled || -1!==[4,5,6,7,12,13,14,15].indexOf((program_models.ModelTablesSelectedItem[19]||{value:-1}).value)"
+    [ShowDragHandle]="dragEnabled"
+    >
+    <!--
+      { value: 4, label: 'Delay/Chorus1' },
+      { value: 5, label: 'Delay/Tremolo' },
+      { value: 6, label: 'Delay' },
+      { value: 7, label: 'Delay/Comp' },
+      { value: 12, label: 'Delay/Chorus2' },
+      { value: 13, label: 'Delay/Flanger1' },
+      { value: 14, label: 'Delay/Swell' },
+      { value: 15, label: 'Delay/Flanger2' }
+    -->
+    <!-- This is also bound to the Level control -->
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="On/Off"
+        MIDICC="28"
+        MIDICCActivate="28"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        #midi_control_delay
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Level"
+        Note="Delay mix with original signal"
+        MIDICC="34"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.delay?.level_1"
+        [Disabled]="__showAllControlsDisabled || !midi_control_delay.activeState"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+    ><!--MIDICCActivate="28"--></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Feedback"
+        Note="Delay Regeneration (Feedback)"
+        MIDICC="32"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.delay?.feedback_1"
+        [Disabled]="__showAllControlsDisabled || !midi_control_delay.activeState"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Fine"
+        Note="Time (Delay Time Fine)"
+        MIDICC="62"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.delay?.time_1_fine"
+        [Disabled]="__showAllControlsDisabled || !midi_control_delay.activeState"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Coarse"
+        Note="Param 1 MSB (Delay Time Coarse)"
+        MIDICC="30"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.delay?.time_1_coarse"
+        [Disabled]="__showAllControlsDisabled || !midi_control_delay.activeState"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+    ></app-midicc-control>
+</app-control-card>
+</ng-container>
+<ng-container *ngSwitchCase="'Compression'">
+<app-control-card Title="Compression" Subtitle="Black hole!"
+    Autosize="width"
+    *ngIf="__debug || __showAllControlsDisabled || -1!==[7,11].indexOf((program_models.ModelTablesSelectedItem[19]||{value:-1}).value)"
+    [ShowDragHandle]="dragEnabled"
+    >
+    <!--
+      { value: 7, label: 'Delay/Comp' },
+      { value: 11, label: 'Compressor' },
+    -->
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Ratio"
+        Note="Compression Ratio"
+        MIDICC="42"
+        [styleInline]="true"
+        [styleRadioPredefinedValues]="__useRadioGroupInsteadOfDropdown"
+        [MIDIPredefinedValues]="[
+            {label:'Off',value:0},
+            {label:'1.4:1',value:25},
+            {label:'2:1',value:50},
+            {label:'3:1',value:75},
+            {label:'6:1',value:100},
+            {label:'Infinity:1',value:125}
+        ]"
+        [MIDIValue]="currentProgram?.conv?.comp_?.compression_ratio"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [Disabled]="__showAllControlsDisabled"
+    ></app-midicc-control>
+</app-control-card>
+</ng-container>
+<ng-container 
+    *ngIf="__debug || __showAllControlsDisabled || -1!==[0,1,2,3,4,5,8,9,11,12,13,15].indexOf((program_models.ModelTablesSelectedItem[19]||{value:-1}).value)">
+    <!--
+          { value: 0, label: 'Chorus2' },
+          { value: 1, label: 'Flanger1' },
+          { value: 2, label: 'Rotary' },
+          { value: 3, label: 'Flanger2' },
+          { value: 4, label: 'Delay/Chorus1' },
+          { value: 5, label: 'Delay/Tremolo' },
+          -- { value: 6, label: 'Delay' },
+          -- { value: 7, label: 'Delay/Comp' },
+          { value: 8, label: 'Chorus1' },
+          { value: 9, label: 'Tremolo' },
+          -- { value: 10, label: 'Bypass' },
+          -- { value: 11, label: 'Compressor' },
+          { value: 12, label: 'Delay/Chorus2' },
+          { value: 13, label: 'Delay/Flanger1' },
+          -- { value: 14, label: 'Delay/Swell' },
+          { value: 15, label: 'Delay/Flanger2' }
+    -->    
+    <ng-container *ngSwitchCase="'Chorus'">
+    <app-control-card Title="Chorus" Subtitle="Space out there"
+        Autosize="width"
+        *ngIf="__debug || __showAllControlsDisabled || -1!==[0,4,8,12].indexOf((program_models.ModelTablesSelectedItem[19]||{value:-1}).value)"
+        [ShowDragHandle]="dragEnabled"
+    >
+    <!--
+          { value: 0, label: 'Chorus2' },
+          { value: 4, label: 'Delay/Chorus1' },
+          { value: 8, label: 'Chorus1' },
+          { value: 12, label: 'Delay/Chorus2' },
+    -->
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Enable"
+            MIDICC="50"
+            MIDICCActivate="50"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.switches?.tremolo_rotary_speaker_chorus_flang_e_enable"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+            #midi_control_chorus
+            [Disabled]="__showAllControlsDisabled"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Speed"
+            Note="Modulation speed"
+            MIDICC="51"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.chorus?.speed"
+            [Disabled]="__showAllControlsDisabled || !midi_control_chorus.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Depth"
+            Note="Modulation depth"
+            MIDICC="52"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.chorus?.depth"
+            [Disabled]="__showAllControlsDisabled || !midi_control_chorus.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Feedback"
+            Note="Modulation regeneration (feedback)"
+            MIDICC="53"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.chorus?.feedback"
+            [Disabled]="__showAllControlsDisabled || !midi_control_chorus.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Pre"
+            Note="Modulation pre-delay"
+            MIDICC="54"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.chorus?.pre_delay"
+            [Disabled]="__showAllControlsDisabled || !midi_control_chorus.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+    </app-control-card>
+    </ng-container>
+    <ng-container *ngSwitchCase="'Flanger'">
+    <app-control-card Title="Flanger" Subtitle="Space out there"
+        Autosize="width"
+        *ngIf="__debug || __showAllControlsDisabled || -1!==[1,3,13,15].indexOf((program_models.ModelTablesSelectedItem[19]||{value:-1}).value)"
+        [ShowDragHandle]="dragEnabled"
+        >
+    <!--
+          { value: 1, label: 'Flanger1' },
+          { value: 3, label: 'Flanger2' },
+          { value: 13, label: 'Delay/Flanger1' },
+          { value: 15, label: 'Delay/Flanger2' }
+    -->
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Enable"
+            MIDICC="50"
+            MIDICCActivate="50"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.switches?.tremolo_rotary_speaker_chorus_flang_e_enable"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+            #midi_control_flanger
+            [Disabled]="__showAllControlsDisabled"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Speed"
+            Note="Modulation speed"
+            MIDICC="51"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.flanger?.speed"
+            [Disabled]="__showAllControlsDisabled || !midi_control_flanger.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Depth"
+            Note="Modulation depth"
+            MIDICC="52"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.flanger?.depth"
+            [Disabled]="__showAllControlsDisabled || !midi_control_flanger.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Feedback"
+            Note="Modulation regeneration (feedback)"
+            MIDICC="53"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.flanger?.feedback"
+            [Disabled]="__showAllControlsDisabled || !midi_control_flanger.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Pre"
+            Note="Modulation pre-delay"
+            MIDICC="54"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.flanger?.pre_delay"
+            [Disabled]="__showAllControlsDisabled || !midi_control_flanger.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+    </app-control-card>
+    </ng-container>
+    <ng-container *ngSwitchCase="'Rotary'">
+    <app-control-card Title="Rotary" Subtitle="Space out there"
+        Autosize="width"
+        *ngIf="__debug || __showAllControlsDisabled || -1!==[2].indexOf((program_models.ModelTablesSelectedItem[19]||{value:-1}).value)"
+        [ShowDragHandle]="dragEnabled"
+        >
+        <!--
+          { value: 2, label: 'Rotary' }
+        -->
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Enable"
+            Note="Rotary speaker on/off"
+            MIDICC="50"
+            MIDICCActivate="50"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.switches?.tremolo_rotary_speaker_chorus_flang_e_enable"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+            #midi_control_rotary
+            [Disabled]="__showAllControlsDisabled"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Depth"
+            Note="Rotary speaker depth (Tweak)"
+            MIDICC="01"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.fx_config?.effects_tweak"
+            [Disabled]="__showAllControlsDisabled || !midi_control_rotary.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Fast"
+            Note="Rotary speaker max speed"
+            MIDICC="56"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.rotary?.fast_speed"
+            [Disabled]="__showAllControlsDisabled || !midi_control_rotary.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Fast/Slow"
+            Note="Rotary speaker current speed. Switches between 'Fast' and 'Slow' speed"
+            MIDICC="55"
+            MIDICCActivate="55"
+            MIDICCActivateEnable="127"
+            MIDICCActivateDisable="0"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.rotary?.current_speed"
+            [Disabled]="__showAllControlsDisabled || !midi_control_rotary.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Slow"
+            Note="Rotary speaker min speed"
+            MIDICC="57"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.rotary?.slow_speed"
+            [Disabled]="__showAllControlsDisabled || !midi_control_rotary.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+    </app-control-card>
+    </ng-container>
+    <ng-container *ngSwitchCase="'Tremolo'">
+    <app-control-card Title="Tremolo" Subtitle="Space out there"
+        Autosize="width"
+        *ngIf="__debug || __showAllControlsDisabled || -1!==[5,9].indexOf((program_models.ModelTablesSelectedItem[19]||{value:-1}).value)"
+        [ShowDragHandle]="dragEnabled"
+        >
+        <!--
+          { value: 5, label: 'Delay/Tremolo' },
+          { value: 9, label: 'Tremolo' },
+        -->
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Enable"
+            Note="Tremolo on/off"
+            MIDICC="50"
+            MIDICCActivate="50"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.switches?.tremolo_rotary_speaker_chorus_flang_e_enable"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+            #midi_control_tremolo
+            [Disabled]="__showAllControlsDisabled"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Speed"
+            Note="Tremolo speed"
+            MIDICC="58"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.tremolo?.speed"
+            [Disabled]="__showAllControlsDisabled || !midi_control_tremolo.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+        <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+            Label="Depth"
+            Note="Tremolo depth"
+            MIDICC="59"
+            [styleVertical]="__useVerticalSlider"
+            [styleInline]="true"
+            [MIDIValue]="currentProgram?.conv?.tremolo?.depth"
+            [Disabled]="__showAllControlsDisabled || !midi_control_tremolo.activeState"
+            [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+        ></app-midicc-control>
+    </app-control-card>
+    </ng-container>
+
+</ng-container>
+<ng-container *ngSwitchCase="'Wah'">
+<app-control-card Title="Wah" Subtitle="Get funky!"
+    Autosize="width"
+    [ShowDragHandle]="dragEnabled"
+>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Wah Wah"
+        Note="Wah on/off"
+        MIDICC="43"
+        MIDICCActivate="43"
+        [styleInline]="true"
+        #midi_control_wha_wah
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [MIDIValue]="0"
+        [Disabled]="__showAllControlsDisabled"
+    >
+        <!-- Wah on/off is not synched to device, so it starts always deactivated -->
+    </app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Pedal pos."
+        Note="Wah pedal position"
+        MIDICC="4"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.wah_wah?.level"
+        [Disabled]="__showAllControlsDisabled || !midi_control_wha_wah.activeState"
+        [styleRound]="__useRoundSlider"
+        [styleInputOnly]="__inputOnly"
+        [MIDIAutoTime]="midi_control_wha_wah.activated?1000:0"
+        MIDIAutoLabel="Auto Wah"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Bottom"
+        Note="Wah low frequency"
+        MIDICC="45"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.wah_wah?.bottom_frequency"
+        [Disabled]="__showAllControlsDisabled || !midi_control_wha_wah.activeState"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+    ></app-midicc-control>
+    <app-midicc-control [OutputDevice]="OutputDevice" [InputDevice]="InputDevice" [MIDIChannel]="midiChannel"
+        Label="Top"
+        Note="Wah high frequency"
+        MIDICC="44"
+        [styleVertical]="__useVerticalSlider"
+        [styleInline]="true"
+        [MIDIValue]="currentProgram?.conv?.wah_wah?.top_frequency"
+        [Disabled]="__showAllControlsDisabled || !midi_control_wha_wah.activeState"
+        [styleRound]="__useRoundSlider"
+		[styleInputOnly]="__inputOnly"
+    ></app-midicc-control>
+</app-control-card>
+</ng-container>
+
+</ng-container>
+</ng-container>
+
+</ng-template>
+
+
+<div [dragula]="dragulaGroup" 
+    [(dragulaModel)]="controls_drag_order" 
+    (dragulaModelChange)="dragulaModelChange($event)"
+    class="dragula-container"
+    *ngIf="dragEnabled;else controls_dragable"
+    >
+    <ng-container [ngTemplateOutlet]="controls_dragable"></ng-container>
+</div>
+</ng-container>
